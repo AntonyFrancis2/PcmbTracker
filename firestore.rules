@@ -1,0 +1,32 @@
+rules_version = '2';
+
+// Each student can read and write only their own documents. Nobody can list or read anyone else's.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid) && request.resource.data.keys().hasOnly(
+        ['onboarded', 'subjects', 'planStart', 'firstReadTarget', 'revisionTarget', 'rewards', 'theme', 'updatedAt']);
+    }
+
+    match /progress/{uid} {
+      allow read, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid) && request.resource.data.keys().hasOnly(
+        ['chapters', 'badges', 'days', 'updatedAt']);
+    }
+
+    // App version info for the "new version available" banner. Edit it from the Firebase console only.
+    match /config/app {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
