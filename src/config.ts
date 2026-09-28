@@ -12,7 +12,8 @@ export const firebaseConfig = {
 };
 
 /** OAuth "Web client" ID from Google Cloud (Firebase → Authentication → Google → Web SDK configuration). Needed for Google sign-in on Android. */
-export const googleWebClientId = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID || '';
+export const googleWebClientId =
+  process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID || '406630955934-jvefd3c21m03r2615tmt4067ahvr18s4.apps.googleusercontent.com';
 
 /** True once the Firebase project is filled in. Without it the app runs in on-device mode (no sign-in, no sync). */
 export const isFirebaseConfigured = firebaseConfig.apiKey !== '' && firebaseConfig.projectId !== '';
