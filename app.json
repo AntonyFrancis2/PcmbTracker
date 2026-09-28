@@ -31,7 +31,8 @@
     ],
     "scheme": "pcmbtracker",
     "experiments": {
-      "typedRoutes": false
+      "typedRoutes": false,
+      "baseUrl": "/PcmbTracker"
     }
   }
 }

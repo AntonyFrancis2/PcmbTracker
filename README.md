@@ -60,6 +60,12 @@ Keep the keystore file and password somewhere safe (e.g. a password manager). Ev
 
 Before each new release, bump `version` and `android.versionCode` in `app.json`.
 
+## Web version (iPhone and laptops)
+
+`.github/workflows/deploy-web.yml` publishes the same app to **https://antonyfrancis2.github.io/PcmbTracker/** on every push to `main`.
+One-time setup: GitHub → Settings → Pages → Source: **GitHub Actions**, and Firebase → Authentication → Settings → Authorized domains → add `antonyfrancis2.github.io`.
+On iPhone, open the link in Safari → Share → **Add to Home Screen**.
+
 ## Sharing on WhatsApp
 
 Send the `.apk` file in the chat. Students tap it → **Install** → allow *Install unknown apps* for WhatsApp once. Ask them to check with a parent first, and to install only from your original message.
