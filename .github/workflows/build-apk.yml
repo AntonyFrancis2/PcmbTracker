@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      # Firebase web config + Google web client ID (Settings → Secrets and variables → Actions → Variables).
+      # Optional overrides; the Firebase config and web client ID live in src/config.ts.
       EXPO_PUBLIC_FIREBASE_API_KEY: ${{ vars.EXPO_PUBLIC_FIREBASE_API_KEY }}
       EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ vars.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
       EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ vars.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
@@ -41,9 +41,6 @@ jobs:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
           missing=0
-          for v in EXPO_PUBLIC_FIREBASE_API_KEY EXPO_PUBLIC_FIREBASE_PROJECT_ID EXPO_PUBLIC_FIREBASE_APP_ID EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID; do
-            if [ -z "${!v}" ]; then echo "::error::Repository variable $v is not set"; missing=1; fi
-          done
           if [ -z "$KEYSTORE_B64" ]; then echo "::error::Secret ANDROID_KEYSTORE_BASE64 is not set"; missing=1; fi
           exit $missing
 
