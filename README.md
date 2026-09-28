@@ -55,7 +55,7 @@ Keep the keystore file and password somewhere safe (e.g. a password manager). Ev
 
 ## Building the APK
 
-- **GitHub Actions (free):** Actions → *Build Android APK* → *Run workflow*. Download the APK from the run's *Artifacts*. Push a tag such as `v1.0.1` to also attach it to a GitHub Release.
+- **GitHub Actions (free):** Actions → *Build Android APK* → *Run workflow*. Download the APK from the run's *Artifacts*. Every push to `main` also builds it and publishes it as a GitHub Release named after the version.
 - **EAS (alternative):** `npx eas-cli@latest build -p android --profile preview` (needs a free Expo account; EAS manages its own key, so register EAS's SHA-1 in Firebase too).
 
 Before each new release, bump `version` and `android.versionCode` in `app.json`.

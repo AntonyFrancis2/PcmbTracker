@@ -1,11 +1,13 @@
 name: Build Android APK
 
-# Run it from the Actions tab ("Run workflow"), or push a tag like v1.0.1 to also publish a GitHub Release.
+# Runs on every push to main (and from the Actions tab). Each run publishes the APK as a GitHub Release
+# named after the version in app.json, so bump `version` + `android.versionCode` for each new release.
 # No untrusted event data (issue/PR text, commit messages) is used anywhere in this workflow.
 on:
   workflow_dispatch:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths-ignore: ['**.md']
 
 permissions:
   contents: write
@@ -77,6 +79,7 @@ jobs:
           out="PCMB-Tracker-v${version}.apk"
           cp android/app/build/outputs/apk/release/app-release.apk "$out"
           echo "file=$out" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -84,7 +87,10 @@ jobs:
           path: ${{ steps.apk.outputs.file }}
 
       - name: Publish GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.apk.outputs.version }}
+          name: PCMB Tracker v${{ steps.apk.outputs.version }}
+          target_commitish: ${{ github.sha }}
           files: ${{ steps.apk.outputs.file }}
+          overwrite_files: true
