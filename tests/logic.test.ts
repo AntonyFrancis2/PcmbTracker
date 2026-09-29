@@ -127,3 +127,11 @@ test('up next picks the subject furthest behind', () => {
   assert.equal(next[1].chapter.id, 'phy-02');
   assert.equal(next[2].kind, 'r');
 });
+
+test('profile merge keeps name and email from whichever copy has them', () => {
+  const local = profile({ updatedAt: 9 });
+  const remote = profile({ updatedAt: 5, name: 'Asha K', email: 'asha@example.com', createdAt: 100 });
+  const m = mergeProfile(local, remote);
+  assert.equal(m.name, 'Asha K'); assert.equal(m.email, 'asha@example.com'); assert.equal(m.createdAt, 100);
+  assert.equal(m.updatedAt, 9, 'the newer copy still wins for everything else');
+});

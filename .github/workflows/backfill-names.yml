@@ -1,0 +1,34 @@
+name: Backfill student names
+
+# Copies each student's Google name, email and sign-up date into their profile so the
+# admin page can show everyone. Safe to re-run: it only fills gaps.
+# Needs the FIREBASE_SERVICE_ACCOUNT secret (Firebase → Project settings → Service accounts).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 0 * * *' # daily, 06:00 IST
+
+permissions:
+  contents: read
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: scripts
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install
+        run: npm ci
+
+      - name: Fill in names and emails
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node backfill-names.mjs

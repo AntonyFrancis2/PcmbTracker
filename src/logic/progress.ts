@@ -35,7 +35,14 @@ export function mergeProfile(a: Profile, b: Profile): Profile {
     if (!o || o.unlockedAt == null) return r;
     return { ...r, unlockedAt: r.unlockedAt == null ? o.unlockedAt : Math.min(r.unlockedAt, o.unlockedAt) };
   });
-  return { ...newer, rewards };
+  const merged: Profile = { ...newer, rewards };
+  // Name, email and join date are never lost by merging with a copy that lacks them
+  // (older app versions and the admin backfill job write them separately).
+  if (!merged.name && older.name) merged.name = older.name;
+  if (!merged.email && older.email) merged.email = older.email;
+  const joined = [a.createdAt, b.createdAt].filter((x): x is number => typeof x === 'number');
+  if (joined.length) merged.createdAt = Math.min(...joined);
+  return merged;
 }
 
 /** Stable JSON used to decide whether a copy actually changed. */

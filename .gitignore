@@ -43,3 +43,4 @@ yarn-error.*
 /android
 *.keystore
 .env
+scripts/node_modules

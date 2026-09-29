@@ -65,6 +65,8 @@ Before each new release, bump `version` and `android.versionCode` in `app.json`.
 `https://<your-vercel-domain>/admin`: sign in with antonyfrancis2604@gmail.com to see every student: join date, last active, read/revised counts, streak, level, pace, and each chapter's read and revised dates. It's read-only and has a CSV download.
 Access is enforced by `isAdmin()` in `firestore.rules` (republish the rules after changing it) and `ADMIN_EMAILS` in `src/config.ts`. Students are told in the app that the admin can see their progress.
 
+Names and emails come from each student's app (v1.1.0+). The **Backfill student names** workflow fills them in for everyone else from Firebase Authentication. It runs daily or on demand and needs the `FIREBASE_SERVICE_ACCOUNT` secret (Firebase → Project settings → Service accounts → Generate new private key, paste the whole JSON).
+
 ## Web version (iPhone and laptops)
 
 Hosted free on **Vercel**, which rebuilds automatically on every push to `main` (settings in `vercel.json`).
