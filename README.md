@@ -62,13 +62,13 @@ Before each new release, bump `version` and `android.versionCode` in `app.json`.
 
 ## Admin page
 
-**https://antonyfrancis2.github.io/PcmbTracker/admin**: sign in with antonyfrancis2604@gmail.com to see every student: join date, last active, read/revised counts, streak, level, pace, and each chapter's read and revised dates. It's read-only and has a CSV download.
+`https://<your-vercel-domain>/admin`: sign in with antonyfrancis2604@gmail.com to see every student: join date, last active, read/revised counts, streak, level, pace, and each chapter's read and revised dates. It's read-only and has a CSV download.
 Access is enforced by `isAdmin()` in `firestore.rules` (republish the rules after changing it) and `ADMIN_EMAILS` in `src/config.ts`. Students are told in the app that the admin can see their progress.
 
 ## Web version (iPhone and laptops)
 
-`.github/workflows/deploy-web.yml` publishes the same app to **https://antonyfrancis2.github.io/PcmbTracker/** on every push to `main`.
-One-time setup: GitHub → Settings → Pages → Source: **GitHub Actions**, and Firebase → Authentication → Settings → Authorized domains → add `antonyfrancis2.github.io`.
+Hosted free on **Vercel**, which rebuilds automatically on every push to `main` (settings in `vercel.json`).
+One-time setup: vercel.com → Continue with GitHub → Add New → Project → import **PcmbTracker** → Deploy. Then add the Vercel domain (e.g. `pcmbtracker.vercel.app`) under Firebase → Authentication → Settings → **Authorized domains** so Google sign-in works.
 On iPhone, open the link in Safari → Share → **Add to Home Screen**.
 
 ## Sharing on WhatsApp
