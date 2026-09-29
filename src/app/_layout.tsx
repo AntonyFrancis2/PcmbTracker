@@ -34,6 +34,8 @@ function Gate() {
         <Stack.Protected guard={signedIn && profile.onboarded}>
           <Stack.Screen name="(tabs)" />
         </Stack.Protected>
+        {/* Admin page checks the account itself; data access is enforced by Firestore rules. */}
+        <Stack.Screen name="admin" />
       </Stack>
       <Celebrations />
       <XpToast />

@@ -1,20 +1,30 @@
 rules_version = '2';
 
-// Each student can read and write only their own documents. Nobody can list or read anyone else's.
+// Each student can read and write only their own documents. Only the admin account can read everyone's (never write).
 service cloud.firestore {
   match /databases/{database}/documents {
     function isOwner(uid) {
       return request.auth != null && request.auth.uid == uid;
     }
 
+    // The app owner's Google account can read every student's data (admin page). Read-only.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'antonyfrancis2604@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
     match /users/{uid} {
-      allow read, delete: if isOwner(uid);
+      allow read: if isOwner(uid) || isAdmin();
+      allow delete: if isOwner(uid);
       allow create, update: if isOwner(uid) && request.resource.data.keys().hasOnly(
-        ['onboarded', 'subjects', 'planStart', 'firstReadTarget', 'revisionTarget', 'rewards', 'theme', 'updatedAt']);
+        ['onboarded', 'subjects', 'planStart', 'firstReadTarget', 'revisionTarget', 'rewards', 'theme', 'updatedAt',
+         'name', 'email', 'createdAt']);
     }
 
     match /progress/{uid} {
-      allow read, delete: if isOwner(uid);
+      allow read: if isOwner(uid) || isAdmin();
+      allow delete: if isOwner(uid);
       allow create, update: if isOwner(uid) && request.resource.data.keys().hasOnly(
         ['chapters', 'badges', 'days', 'updatedAt']);
     }

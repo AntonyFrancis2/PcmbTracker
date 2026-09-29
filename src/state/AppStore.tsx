@@ -277,10 +277,27 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         lastRemote.current[which] = null;
         scheduleRemote();
       };
+      // Record name, email and join date for the admin page. Only after the server has answered,
+      // so a fresh (offline) device never overwrites a real profile with an empty one.
+      let identityDone = false;
+      const ensureIdentity = () => {
+        if (identityDone) return;
+        identityDone = true;
+        const p = live.current.profile;
+        const name = user.displayName ?? '';
+        const email = user.email ?? '';
+        const joined = Date.parse(user.metadata.creationTime ?? '') || Date.now();
+        if (p.name === name && p.email === email && p.createdAt) return;
+        commit({ ...p, name, email, createdAt: p.createdAt ?? joined, updatedAt: Date.now() }, live.current.progress, false);
+      };
       unsubs.push(
         onSnapshot(
           doc(firestore, 'users', user.uid),
-          (s) => (s.exists() ? onRemote('profile', s.data()) : missing('profile')),
+          (s) => {
+            if (s.exists()) onRemote('profile', s.data());
+            else missing('profile');
+            if (!s.metadata.fromCache) ensureIdentity();
+          },
           () => setSync('offline'),
         ),
         onSnapshot(

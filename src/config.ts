@@ -17,3 +17,6 @@ export const googleWebClientId =
 
 /** True once the Firebase project is filled in. Without it the app runs in on-device mode (no sign-in, no sync). */
 export const isFirebaseConfigured = firebaseConfig.apiKey !== '' && firebaseConfig.projectId !== '';
+
+/** Google accounts that can open the admin page (/admin). Must match isAdmin() in firestore.rules. */
+export const ADMIN_EMAILS = ['antonyfrancis2604@gmail.com'];

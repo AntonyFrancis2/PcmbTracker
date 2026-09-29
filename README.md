@@ -2,7 +2,7 @@
 
 An Android app (and web app) where Class 12 students tick off every NCERT Physics, Chemistry, Maths and Biology chapter twice, once when they first understand it and again when they revise it. It motivates them with a finish-by plan, XP levels, badges, a forgiving study streak, colour themes to unlock, and real-world rewards they set with their family.
 
-- **Private:** each student sees only their own progress.
+- **Private between students:** each student sees only their own progress; the admin can see everyone's (students are told this in the app).
 - **Free to run:** Firebase Spark plan (Google sign-in + Firestore). No server.
 - **Shared as an .apk** over WhatsApp; the web build covers iPhones and laptops.
 
@@ -59,6 +59,11 @@ Keep the keystore file and password somewhere safe (e.g. a password manager). Ev
 - **EAS (alternative):** `npx eas-cli@latest build -p android --profile preview` (needs a free Expo account; EAS manages its own key, so register EAS's SHA-1 in Firebase too).
 
 Before each new release, bump `version` and `android.versionCode` in `app.json`.
+
+## Admin page
+
+**https://antonyfrancis2.github.io/PcmbTracker/admin**: sign in with antonyfrancis2604@gmail.com to see every student: join date, last active, read/revised counts, streak, level, pace, and each chapter's read and revised dates. It's read-only and has a CSV download.
+Access is enforced by `isAdmin()` in `firestore.rules` (republish the rules after changing it) and `ADMIN_EMAILS` in `src/config.ts`. Students are told in the app that the admin can see their progress.
 
 ## Web version (iPhone and laptops)
 

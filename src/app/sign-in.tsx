@@ -10,7 +10,7 @@ const POINTS: { icon: keyof typeof Ionicons.glyphMap; text: string }[] = [
   { icon: 'checkmark-done-circle', text: 'Tick every NCERT chapter twice: first read and revision' },
   { icon: 'speedometer', text: 'Set a finish-by date and see if you are ahead of plan' },
   { icon: 'trophy', text: 'Earn badges, level up and unlock rewards you set' },
-  { icon: 'lock-closed', text: 'Your progress is private to you' },
+  { icon: 'lock-closed', text: 'Other students never see your progress' },
 ];
 
 export default function SignIn() {
@@ -53,7 +53,7 @@ export default function SignIn() {
         <Button label={busy ? 'Signing in…' : 'Continue with Google'} onPress={go} disabled={busy} icon={<Ionicons name="logo-google" size={18} color={c.onAccent} />} />
         {error && <T variant="small" color={c.danger}>{error}</T>}
         <T variant="small" style={{ textAlign: 'center' }}>
-          We save only your chapter ticks, chosen subjects, dates and rewards. You can delete everything from the Me tab.
+          We save your Google name and email, chapter ticks, subjects, dates and rewards. Other students can't see your progress; the app's admin can, to help keep everyone on track. You can delete everything from the Me tab.
         </T>
       </View>
     </ScrollView>

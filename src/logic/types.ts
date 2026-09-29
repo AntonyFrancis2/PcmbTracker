@@ -31,6 +31,11 @@ export type Profile = {
   rewards: Reward[];
   theme: string;
   updatedAt: number;
+  /** Google account name and email, so the app owner's admin page can list students. */
+  name?: string;
+  email?: string;
+  /** When the student first signed up (epoch ms). */
+  createdAt?: number;
 };
 
 export const emptyProgress = (): Progress => ({ chapters: {}, badges: {}, days: [], updatedAt: 0 });

@@ -157,9 +157,9 @@ export default function Me() {
       <SectionTitle>Privacy</SectionTitle>
       <Card style={{ gap: 6 }}>
         <T variant="small">
-          This app saves your Google name and email, your subjects, target dates, rewards and the dates you ticked each chapter. Nobody else can see your
-          progress in the app. The person who runs the app can technically see stored data in the database console but has agreed not to look at
-          individual students. Delete everything below at any time.
+          This app saves your Google name and email, your subjects, target dates, rewards and the dates you ticked each chapter. Other students
+          can't see any of it. The app's admin (the person who runs the app) can see each student's progress, including which chapters are read
+          and revised and when, to help keep everyone on track. Delete everything below at any time.
         </T>
       </Card>
 
