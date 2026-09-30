@@ -13,9 +13,9 @@ An Android app (and web app) where Class 12 students tick off every NCERT Physic
 | Sign in | Google sign-in |
 | Welcome | Pick PCM / PCB / PCMB, set finish-by dates, add a first reward |
 | Home | Level and XP, streak, read/revised counts, pace against the plan, next reward, next badge, subject cards, up-next chapters |
-| Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters |
+| Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters. Each chapter opens to its NCERT topics and sub-topics (490 in all), rated Weak / OK / Strong, with a progress bar; rating them all ticks the chapter's 1st automatically |
 | Badges | Level, colour themes unlocked by level, earned and locked badges with progress |
-| Me | My rewards, finish-by dates, subjects, privacy note, sign out, delete account |
+| Me | My rewards, finish-by dates, subjects, Light / Dark / Match phone appearance, privacy note, sign out, delete account |
 
 Motivation rules: first read = 10 XP, revision = 15 XP, 1.5× when you're ahead of your plan line. Levels 1–10 unlock five colour themes. The streak counts study days and forgives one missed day per week. Badges and unlocked rewards stay earned even if a tick is undone.
 
@@ -25,6 +25,7 @@ Motivation rules: first read = 10 XP, revision = 15 XP, 1.5× when you're ahead 
 src/
   app/            Expo Router screens (sign-in, onboarding, tabs)
   data/chapters.ts  NCERT chapter list (stable IDs: phy-01 … bio-13)
+  data/topics.ts    NCERT section headings per chapter (IDs like phy-01:1.4.1)
   logic/          Pure TS: ticks, merge, XP, levels, streak, pace, badges (unit-tested)
   state/AppStore.tsx  Auth, local cache (AsyncStorage), Firestore sync, celebrations
   lib/            Firebase + Google sign-in (separate .native / web files)

@@ -14,7 +14,7 @@ import { usePalette, radius } from '../../ui/theme';
 export default function Me() {
   const c = usePalette();
   const insets = useSafeAreaInsets();
-  const { account, cloud, profile, progress, updateProfile, addReward, removeReward, signOut, deleteAccount } = useStore();
+  const { account, cloud, profile, progress, updateProfile, addReward, removeReward, signOut, deleteAccount, appearance, setAppearance } = useStore();
   const [title, setTitle] = useState('');
   const [milestone, setMilestone] = useState('halfway');
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -151,6 +151,17 @@ export default function Me() {
       </View>
       <T variant="small" style={{ marginTop: -6 }}>
         Hiding a subject keeps its ticks. Badges you've earned stay earned.
+      </T>
+
+      {/* Appearance */}
+      <SectionTitle>Appearance</SectionTitle>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+        <Chip label="Light" selected={appearance === 'light'} onPress={() => setAppearance('light')} />
+        <Chip label="Dark" selected={appearance === 'dark'} onPress={() => setAppearance('dark')} />
+        <Chip label="Match phone" selected={appearance === 'system'} onPress={() => setAppearance('system')} />
+      </View>
+      <T variant="small" style={{ marginTop: -6 }}>
+        Colour themes you unlock by levelling up are on the Badges tab.
       </T>
 
       {/* Privacy */}

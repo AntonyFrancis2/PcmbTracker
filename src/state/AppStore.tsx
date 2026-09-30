@@ -8,7 +8,8 @@ import { auth, db } from '../lib/firebase';
 import { signInWithGoogle, signOutEverywhere } from '../lib/googleAuth';
 import { isFirebaseConfigured } from '../config';
 import { emptyProgress, type Profile, type Progress, type Reward } from '../logic/types';
-import { mergeProfile, mergeProgress, sameJSON, toggleMark } from '../logic/progress';
+import { mergeProfile, mergeProgress, rateTopic as rateTopicMark, sameJSON, toggleMark } from '../logic/progress';
+import type { Confidence } from '../logic/types';
 import { toDay } from '../logic/dates';
 import {
   computeStats,
@@ -27,6 +28,9 @@ export type Celebration =
 
 export type SyncState = 'device' | 'synced' | 'saving' | 'offline';
 
+export type Appearance = 'system' | 'light' | 'dark';
+const APPEARANCE_KEY = 'c12tracker:appearance';
+
 type Account = { uid: string; name: string; email: string | null; photo: string | null };
 
 type Store = {
@@ -43,6 +47,11 @@ type Store = {
   deleteAccount: () => Promise<void>;
   /** Returns the XP gained (negative when a tick is undone). */
   toggle: (chapterId: string, kind: 'f' | 'r') => number;
+  /** Rate a topic; returns XP gained (chapter auto-completion earns the chapter's XP). */
+  rateTopic: (topicId: string, c: Confidence) => number;
+  /** Light / dark mode for this device. */
+  appearance: Appearance;
+  setAppearance: (a: Appearance) => void;
   updateProfile: (patch: Partial<Profile>) => void;
   addReward: (title: string, milestone: string) => void;
   removeReward: (id: string) => void;
@@ -127,6 +136,19 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [sync, setSync] = useState<SyncState>(isFirebaseConfigured ? 'synced' : 'device');
   const [celebrations, setCelebrations] = useState<Celebration[]>([]);
   const [update, setUpdate] = useState<Store['update']>(null);
+  const [appearance, setAppearanceState] = useState<Appearance>('system');
+
+  useEffect(() => {
+    AsyncStorage.getItem(APPEARANCE_KEY)
+      .then((v) => {
+        if (v === 'light' || v === 'dark' || v === 'system') setAppearanceState(v);
+      })
+      .catch(() => {});
+  }, []);
+  const setAppearance = useCallback((a: Appearance) => {
+    setAppearanceState(a);
+    AsyncStorage.setItem(APPEARANCE_KEY, a).catch(() => {});
+  }, []);
 
   // Latest values for async callbacks.
   const live = useRef({ profile, progress, uid: null as string | null });
@@ -376,6 +398,16 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     [commit],
   );
 
+  const rateTopic = useCallback(
+    (topicId: string, c: Confidence) => {
+      const xpOf = () => computeXp(computeStats(live.current.profile, live.current.progress), live.current.profile);
+      const before = xpOf();
+      commit(live.current.profile, rateTopicMark(live.current.progress, topicId, c), true);
+      return xpOf() - before;
+    },
+    [commit],
+  );
+
   const updateProfile = useCallback(
     (patch: Partial<Profile>) => {
       commit({ ...live.current.profile, ...patch, updatedAt: Date.now() }, live.current.progress, true);
@@ -423,12 +455,15 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       signOut,
       deleteAccount,
       toggle,
+      rateTopic,
+      appearance,
+      setAppearance,
       updateProfile,
       addReward,
       removeReward,
       dismissCelebration,
     }),
-    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, updateProfile, addReward, removeReward, dismissCelebration],
+    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, rateTopic, appearance, setAppearance, updateProfile, addReward, removeReward, dismissCelebration],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

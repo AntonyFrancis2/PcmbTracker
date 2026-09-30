@@ -1,4 +1,5 @@
-import type { ChapterMark, Profile, Progress, Reward } from './types';
+import type { ChapterMark, Confidence, Profile, Progress, Reward } from './types';
+import { ratedItems } from '../data/topics';
 import { toDay } from './dates';
 
 const MAX_DAYS = 500;
@@ -55,4 +56,37 @@ function stable(v: unknown): string {
   if (Array.isArray(v)) return `[${v.map(stable).join(',')}]`;
   const keys = Object.keys(v as object).sort();
   return `{${keys.map((k) => `${JSON.stringify(k)}:${stable((v as Record<string, unknown>)[k])}`).join(',')}}`;
+}
+
+/**
+ * Rate a topic (1 Weak, 2 OK, 3 Strong; 0 clears it). Rating every topic of a chapter ticks the
+ * chapter's first read automatically. Clearing a rating never un-ticks the chapter.
+ */
+export function rateTopic(p: Progress, topicId: string, c: Confidence, now = Date.now()): Progress {
+  const prev = p.chapters[topicId];
+  const chapters: Record<string, ChapterMark> = { ...p.chapters, [topicId]: { f: null, r: null, c, u: now } };
+  const chapterId = topicId.split(':')[0];
+  const items = ratedItems(chapterId);
+  const allRated = items.length > 0 && items.every((t) => (chapters[t.id]?.c ?? 0) > 0);
+  const ch = chapters[chapterId];
+  if (allRated && ch?.f == null) chapters[chapterId] = { f: now, r: ch?.r ?? null, u: now };
+  const today = toDay(now);
+  const rated = c > 0 && (prev?.c ?? 0) !== c;
+  const days = rated && !p.days.includes(today) ? [...p.days, today].sort().slice(-MAX_DAYS) : p.days;
+  return { ...p, chapters, days, updatedAt: now };
+}
+
+export type TopicStats = { total: number; rated: number; weak: number; ok: number; strong: number };
+
+export function topicStats(p: Progress, chapterId: string): TopicStats {
+  const s: TopicStats = { total: 0, rated: 0, weak: 0, ok: 0, strong: 0 };
+  for (const t of ratedItems(chapterId)) {
+    s.total++;
+    const c = p.chapters[t.id]?.c ?? 0;
+    if (c > 0) s.rated++;
+    if (c === 1) s.weak++;
+    else if (c === 2) s.ok++;
+    else if (c === 3) s.strong++;
+  }
+  return s;
 }

@@ -1,9 +1,16 @@
 import type { SubjectKey } from '../data/chapters';
 
 /** One chapter's two ticks. Times are epoch milliseconds; `u` is when this record last changed (used to merge devices). */
-export type ChapterMark = { f: number | null; r: number | null; u: number };
+export type ChapterMark = { f: number | null; r: number | null; u: number; c?: Confidence };
+
+/** Topic confidence: 0 = not rated yet, 1 = Weak, 2 = OK, 3 = Strong. */
+export type Confidence = 0 | 1 | 2 | 3;
 
 export type Progress = {
+  /**
+   * Keyed by chapter id ("phy-01") for chapter ticks, and by topic id ("phy-01:1.4.1") for topic
+   * confidence (`c`). Sharing one map keeps older app versions from dropping topic ratings when they sync.
+   */
   chapters: Record<string, ChapterMark>;
   /** badgeId -> epoch ms when first earned. Badges stay earned even if a tick is undone. */
   badges: Record<string, number>;

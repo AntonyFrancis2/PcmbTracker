@@ -12,6 +12,10 @@ const light = {
   faint: '#8d94ad',
   line: '#e1e4ef',
   done: '#1b9152',
+  weak: '#c6362c',
+  weakSoft: '#fbe3e1',
+  okLevel: '#b7791f',
+  okSoft: '#fcefd6',
   doneSoft: '#dcf4e6',
   rev: '#c86a00',
   revSoft: '#fdecd2',
@@ -29,6 +33,10 @@ const dark: typeof light = {
   faint: '#6d7591',
   line: '#262c40',
   done: '#4ad685',
+  weak: '#f07167',
+  weakSoft: '#3b1c1c',
+  okLevel: '#f2c14e',
+  okSoft: '#3a2e12',
   doneSoft: '#17362a',
   rev: '#f5b74a',
   revSoft: '#3a2b12',
@@ -41,8 +49,8 @@ export type Palette = typeof light & { accent: string; accentSoft: string; onAcc
 
 export function usePalette(): Palette {
   const scheme = useColorScheme();
-  const { profile } = useStore();
-  const isDark = scheme === 'dark';
+  const { profile, appearance } = useStore();
+  const isDark = appearance === 'system' ? scheme === 'dark' : appearance === 'dark';
   const base = isDark ? dark : light;
   const theme = THEMES.find((t) => t.id === profile.theme) ?? THEMES[0];
   const accent = isDark ? theme.accentDark : theme.accent;

@@ -3,7 +3,8 @@ import { Linking, Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { SUBJECT_BY_KEY } from '../../data/chapters';
+import { ALL_CHAPTERS, SUBJECT_BY_KEY } from '../../data/chapters';
+import { TOPICS } from '../../data/topics';
 import { shortDate } from '../../logic/dates';
 import { computePace, computeStats, computeXp, currentStreak, evaluateBadges, levelFor, milestoneById, upNext, type Pace } from '../../logic/gamify';
 import { useStore } from '../../state/AppStore';
@@ -84,6 +85,12 @@ export default function Home() {
       nextBadge,
       lockedReward,
       next: upNext(stats, progress, 3),
+      weakTopics: ALL_CHAPTERS.filter((ch) => profile.subjects.includes(ch.subject)).flatMap((ch) =>
+        (TOPICS[ch.id] ?? [])
+          .flatMap((t) => (t.subs.length ? t.subs : [t]))
+          .filter((t) => progress.chapters[t.id]?.c === 1)
+          .map((t) => ({ topic: t, chapter: ch })),
+      ),
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile, progress]);
@@ -211,6 +218,29 @@ export default function Home() {
             </View>
           </Card>
         </Pressable>
+      )}
+
+      {/* Weak topics to revise */}
+      {data.weakTopics.length > 0 && (
+        <Card style={{ gap: 8, borderColor: c.weak + '66' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <Ionicons name="alert-circle" size={22} color={c.weak} />
+            <T style={{ flex: 1, fontWeight: '800' }}>
+              {data.weakTopics.length} weak {data.weakTopics.length === 1 ? 'topic' : 'topics'} to revise
+            </T>
+          </View>
+          {data.weakTopics.slice(0, 4).map(({ topic, chapter }) => (
+            <Pressable key={topic.id} onPress={() => router.push({ pathname: '/chapters', params: { subject: chapter.subject } })}>
+              <T variant="small">
+                <T variant="small" color={c.subject[chapter.subject]} style={{ fontWeight: '800' }}>
+                  {SUBJECT_BY_KEY[chapter.subject].short} {topic.no}
+                </T>{' '}
+                {topic.title}
+              </T>
+            </Pressable>
+          ))}
+          {data.weakTopics.length > 4 && <T variant="small">and {data.weakTopics.length - 4} more</T>}
+        </Card>
       )}
 
       {/* Subjects */}

@@ -119,9 +119,19 @@ function StudentDetail({ row, onClose }: { row: StudentRow; onClose: () => void 
                   <T variant="small" style={{ width: 22, fontWeight: '800', textAlign: 'right' }}>
                     {l.chapter.no}
                   </T>
-                  <T style={{ flex: 1 }} numberOfLines={2}>
-                    {l.chapter.name}
-                  </T>
+                  <View style={{ flex: 1, gap: 2 }}>
+                    <T numberOfLines={2}>{l.chapter.name}</T>
+                    <T variant="small">
+                      Topics {l.topics.rated}/{l.topics.total}
+                      {l.topics.weak ? ` · ${l.topics.weak} weak` : ''}
+                      {l.topics.strong ? ` · ${l.topics.strong} strong` : ''}
+                    </T>
+                    {l.weakTopics.length > 0 && (
+                      <T variant="small" color={c.weak} numberOfLines={3}>
+                        Weak: {l.weakTopics.join(', ')}
+                      </T>
+                    )}
+                  </View>
                   <T variant="small" style={{ width: 92 }} color={l.readAt ? c.done : c.faint}>
                     {l.readAt ? `Read ${shortDate(l.readAt)}` : 'Not read'}
                   </T>
