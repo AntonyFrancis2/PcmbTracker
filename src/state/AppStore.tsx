@@ -10,6 +10,7 @@ import { isFirebaseConfigured } from '../config';
 import { emptyProgress, type Profile, type Progress, type Reward } from '../logic/types';
 import { mergeProfile, mergeProgress, rateTopic as rateTopicMark, sameJSON, toggleMark } from '../logic/progress';
 import type { Confidence } from '../logic/types';
+import type { PlanSettings } from '../logic/planner';
 import { toDay } from '../logic/dates';
 import {
   computeStats,
@@ -52,6 +53,9 @@ type Store = {
   /** Light / dark mode for this device. */
   appearance: Appearance;
   setAppearance: (a: Appearance) => void;
+  /** The student's study-plan answers (null until they fill the plan form). */
+  plan: PlanSettings | null;
+  savePlan: (s: PlanSettings | null) => void;
   updateProfile: (patch: Partial<Profile>) => void;
   addReward: (title: string, milestone: string) => void;
   removeReward: (id: string) => void;
@@ -72,6 +76,7 @@ export const defaultProfile = (): Profile => ({
 });
 
 const cacheKey = (uid: string) => `c12tracker:${uid}`;
+const planKey = (uid: string) => `c12tracker:plan:${uid}`;
 const DEVICE_UID = 'on-device';
 
 /** Award badges and unlock rewards that are now met. Returns updated copies and what to celebrate. */
@@ -137,6 +142,8 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [celebrations, setCelebrations] = useState<Celebration[]>([]);
   const [update, setUpdate] = useState<Store['update']>(null);
   const [appearance, setAppearanceState] = useState<Appearance>('system');
+  const [plan, setPlanState] = useState<PlanSettings | null>(null);
+  const planRef = useRef<PlanSettings | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem(APPEARANCE_KEY)
@@ -253,6 +260,13 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       live.current.progress = g;
       setProfile(p);
       setProgress(g);
+      try {
+        const rawPlan = await AsyncStorage.getItem(planKey(uid));
+        planRef.current = rawPlan ? (JSON.parse(rawPlan) as PlanSettings) : null;
+      } catch {
+        planRef.current = null;
+      }
+      setPlanState(planRef.current);
       setStatus('ready');
     },
     [],
@@ -327,6 +341,22 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
           (s) => (s.exists() ? onRemote('progress', s.data()) : missing('progress')),
           () => setSync('offline'),
         ),
+        // Study plan lives in its own document so a plan problem can never block progress syncing.
+        onSnapshot(
+          doc(firestore, 'plans', user.uid),
+          (s) => {
+            const remote = s.exists() ? (s.data() as PlanSettings) : null;
+            const local = planRef.current;
+            if (remote && (!local || remote.updatedAt > local.updatedAt)) {
+              planRef.current = remote;
+              setPlanState(remote);
+              AsyncStorage.setItem(planKey(user.uid), JSON.stringify(remote)).catch(() => {});
+            } else if (local && (!remote || local.updatedAt > remote.updatedAt)) {
+              setDoc(doc(firestore, 'plans', user.uid), local).catch(() => {});
+            }
+          },
+          () => {},
+        ),
       );
 
       if (Platform.OS === 'android') {
@@ -364,6 +394,9 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     if (!uid) return;
     if (writeTimer.current) clearTimeout(writeTimer.current);
     await AsyncStorage.removeItem(cacheKey(uid)).catch(() => {});
+    await AsyncStorage.removeItem(planKey(uid)).catch(() => {});
+    planRef.current = null;
+    setPlanState(null);
     if (uid === DEVICE_UID || !auth || !db) {
       live.current.profile = defaultProfile();
       live.current.progress = emptyProgress();
@@ -371,7 +404,11 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       setProgress(emptyProgress());
       return;
     }
-    await Promise.all([deleteDoc(doc(db, 'users', uid)), deleteDoc(doc(db, 'progress', uid))]);
+    await Promise.all([
+      deleteDoc(doc(db, 'users', uid)),
+      deleteDoc(doc(db, 'progress', uid)),
+      deleteDoc(doc(db, 'plans', uid)).catch(() => {}),
+    ]);
     const user = auth.currentUser;
     if (user) {
       try {
@@ -439,6 +476,22 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     [commit],
   );
 
+  const savePlan = useCallback((s: PlanSettings | null) => {
+    const uid = live.current.uid;
+    const next = s ? { ...s, updatedAt: Date.now() } : null;
+    planRef.current = next;
+    setPlanState(next);
+    if (!uid) return;
+    if (next) AsyncStorage.setItem(planKey(uid), JSON.stringify(next)).catch(() => {});
+    else AsyncStorage.removeItem(planKey(uid)).catch(() => {});
+    if (db && uid !== DEVICE_UID) {
+      const ref = doc(db, 'plans', uid);
+      (next ? setDoc(ref, next) : deleteDoc(ref)).catch(() => {
+        // Saved on this device; it syncs once the plans rule is published.
+      });
+    }
+  }, []);
+
   const dismissCelebration = useCallback(() => setCelebrations((q) => q.slice(1)), []);
 
   const value = useMemo<Store>(
@@ -458,12 +511,14 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       rateTopic,
       appearance,
       setAppearance,
+      plan,
+      savePlan,
       updateProfile,
       addReward,
       removeReward,
       dismissCelebration,
     }),
-    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, rateTopic, appearance, setAppearance, updateProfile, addReward, removeReward, dismissCelebration],
+    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, rateTopic, appearance, setAppearance, plan, savePlan, updateProfile, addReward, removeReward, dismissCelebration],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

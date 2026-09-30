@@ -51,7 +51,7 @@ const LEVELS: { c: Exclude<Confidence, 0>; label: string }[] = [
   { c: 3, label: 'Strong' },
 ];
 
-function ConfidencePicker({ value, onChange, title }: { value: Confidence; onChange: (c: Confidence) => void; title: string }) {
+export function ConfidencePicker({ value, onChange, title }: { value: Confidence; onChange: (c: Confidence) => void; title: string }) {
   const c = usePalette();
   const tone = (lvl: Confidence) => (lvl === 1 ? [c.weak, c.weakSoft] : lvl === 2 ? [c.okLevel, c.okSoft] : [c.done, c.doneSoft]);
   return (

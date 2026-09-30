@@ -2,7 +2,7 @@
 
 An Android app (and web app) where Class 12 students tick off every NCERT Physics, Chemistry, Maths and Biology chapter twice, once when they first understand it and again when they revise it. It motivates them with a finish-by plan, XP levels, badges, a forgiving study streak, colour themes to unlock, and real-world rewards they set with their family.
 
-- **Private between students:** each student sees only their own progress; the admin can see everyone's (students are told this in the app).
+- **Private:** each student sees only their own progress.
 - **Free to run:** Firebase Spark plan (Google sign-in + Firestore). No server.
 - **Shared as an .apk** over WhatsApp; the web build covers iPhones and laptops.
 
@@ -12,10 +12,13 @@ An Android app (and web app) where Class 12 students tick off every NCERT Physic
 | --- | --- |
 | Sign in | Google sign-in |
 | Welcome | Pick PCM / PCB / PCMB, set finish-by dates, add a first reward |
-| Home | Level and XP, streak, read/revised counts, pace against the plan, next reward, next badge, subject cards, up-next chapters |
-| Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters. Each chapter opens to its NCERT topics and sub-topics (490 in all), rated Weak / OK / Strong, with a progress bar; rating them all ticks the chapter's 1st automatically |
+| Home | Today's plan, level and XP, streak, read/revised counts, pace against the plan, next reward, next badge, subject cards, up-next chapters |
+| Plan | A 9-question form (start date, finish dates, study days, hours, start time, session length, mix, focus subject, days off) builds an hour-by-hour timetable of every topic left. Month calendar, day agenda, and it rebalances automatically when a day is missed |
+| Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters |
 | Badges | Level, colour themes unlocked by level, earned and locked badges with progress |
-| Me | My rewards, finish-by dates, subjects, Light / Dark / Match phone appearance, privacy note, sign out, delete account |
+| Me | My rewards, finish-by dates, subjects, privacy note, sign out, delete account |
+
+Plan estimates: 45 min per Physics/Maths sub-topic, 30 min per Chemistry/Biology sub-topic, revision about half that (`src/logic/planner.ts`).
 
 Motivation rules: first read = 10 XP, revision = 15 XP, 1.5× when you're ahead of your plan line. Levels 1–10 unlock five colour themes. The streak counts study days and forgives one missed day per week. Badges and unlocked rewards stay earned even if a tick is undone.
 
@@ -25,7 +28,6 @@ Motivation rules: first read = 10 XP, revision = 15 XP, 1.5× when you're ahead 
 src/
   app/            Expo Router screens (sign-in, onboarding, tabs)
   data/chapters.ts  NCERT chapter list (stable IDs: phy-01 … bio-13)
-  data/topics.ts    NCERT section headings per chapter (IDs like phy-01:1.4.1)
   logic/          Pure TS: ticks, merge, XP, levels, streak, pace, badges (unit-tested)
   state/AppStore.tsx  Auth, local cache (AsyncStorage), Firestore sync, celebrations
   lib/            Firebase + Google sign-in (separate .native / web files)
@@ -43,12 +45,12 @@ plugins/          Config plugin that signs the release APK
 1. **Add a web app** (Project settings → Your apps → `</>`) and copy its config values.
 2. **Authentication → Sign-in method → Google → Enable.** Open it again and copy the **Web client ID** from *Web SDK configuration*.
 3. **Add an Android app** with package name `com.antonyfrancis.pcmbtracker` and the release key's **SHA-1** fingerprint (and SHA-256). Without this, Google sign-in fails on the phone. You don't need to download `google-services.json`.
-4. **Firestore Database → Create database** (production mode, region `asia-south1`), then paste `firestore.rules` into the **Rules** tab and publish.
+4. **Firestore Database → Create database** (production mode, region `asia-south1`), then paste `firestore.rules` into the **Rules** tab and publish. Republish whenever `firestore.rules` changes (v1.3.0 added `plans/{uid}`).
 5. Optional, for the update banner: create document `config/app` with `latestVersion` (e.g. `"1.0.1"`) and `apkUrl` (link to the new APK).
 
 ### 2. GitHub (repository settings → Secrets and variables → Actions)
 
-The Firebase config and Google web client ID live in `src/config.ts` (not secret), so no variables are needed.
+**Variables:** `EXPO_PUBLIC_FIREBASE_API_KEY`, `EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN`, `EXPO_PUBLIC_FIREBASE_PROJECT_ID`, `EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET`, `EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `EXPO_PUBLIC_FIREBASE_APP_ID`, `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`.
 
 **Secrets:** `ANDROID_KEYSTORE_BASE64` (the keystore file, base64), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` (`pcmbtracker`), `ANDROID_KEY_PASSWORD`.
 
@@ -56,23 +58,10 @@ Keep the keystore file and password somewhere safe (e.g. a password manager). Ev
 
 ## Building the APK
 
-- **GitHub Actions (free):** Actions → *Build Android APK* → *Run workflow*. Download the APK from the run's *Artifacts*. Every push to `main` also builds it and publishes it as a GitHub Release named after the version.
+- **GitHub Actions (free):** Actions → *Build Android APK* → *Run workflow*. Download the APK from the run's *Artifacts*. Push a tag such as `v1.0.1` to also attach it to a GitHub Release.
 - **EAS (alternative):** `npx eas-cli@latest build -p android --profile preview` (needs a free Expo account; EAS manages its own key, so register EAS's SHA-1 in Firebase too).
 
 Before each new release, bump `version` and `android.versionCode` in `app.json`.
-
-## Admin page
-
-`https://<your-vercel-domain>/admin`: sign in with antonyfrancis2604@gmail.com to see every student: join date, last active, read/revised counts, streak, level, pace, and each chapter's read and revised dates. It's read-only and has a CSV download.
-Access is enforced by `isAdmin()` in `firestore.rules` (republish the rules after changing it) and `ADMIN_EMAILS` in `src/config.ts`. Students are told in the app that the admin can see their progress.
-
-Names and emails come from each student's app (v1.1.0+). The **Backfill student names** workflow fills them in for everyone else from Firebase Authentication. It runs daily or on demand and needs the `FIREBASE_SERVICE_ACCOUNT` secret (Firebase → Project settings → Service accounts → Generate new private key, paste the whole JSON).
-
-## Web version (iPhone and laptops)
-
-Hosted free on **Vercel**, which rebuilds automatically on every push to `main` (settings in `vercel.json`).
-One-time setup: vercel.com → Continue with GitHub → Add New → Project → import **PcmbTracker** → Deploy. Then add the Vercel domain (e.g. `pcmbtracker.vercel.app`) under Firebase → Authentication → Settings → **Authorized domains** so Google sign-in works.
-On iPhone, open the link in Safari → Share → **Add to Home Screen**.
 
 ## Sharing on WhatsApp
 

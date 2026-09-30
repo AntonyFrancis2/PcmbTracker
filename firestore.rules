@@ -29,6 +29,12 @@ service cloud.firestore {
         ['chapters', 'badges', 'days', 'updatedAt']);
     }
 
+    // Each student's study-plan answers (plan form). Admin can read them.
+    match /plans/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isOwner(uid);
+    }
+
     // App version info for the "new version available" banner. Edit it from the Firebase console only.
     match /config/app {
       allow read: if request.auth != null;

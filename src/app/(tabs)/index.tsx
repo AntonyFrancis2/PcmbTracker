@@ -10,6 +10,7 @@ import { computePace, computeStats, computeXp, currentStreak, evaluateBadges, le
 import { useStore } from '../../state/AppStore';
 import { Bar, Card, SectionTitle, T } from '../../ui/components';
 import { ChapterRow } from '../../ui/ChapterRow';
+import { SlotRow, slotDone, usePlan } from '../../ui/PlanParts';
 import { usePalette, radius } from '../../ui/theme';
 
 function greeting(): string {
@@ -59,7 +60,10 @@ function PaceLine({ label, pace, color }: { label: string; pace: Pace; color: st
 export default function Home() {
   const c = usePalette();
   const insets = useSafeAreaInsets();
-  const { account, profile, progress, sync, update } = useStore();
+  const { account, profile, progress, sync, update, plan: planSettings } = useStore();
+  const { plan, today } = usePlan();
+  const todaySlots = plan?.days[today] ?? [];
+  const todayLeft = todaySlots.filter((s) => !slotDone(progress, s, today));
   const now = Date.now();
 
   const data = useMemo(() => {
@@ -148,6 +152,51 @@ export default function Home() {
           {level.max ? 'Top level reached. Legend!' : `${level.toNext} XP to level ${level.level + 1}`}
         </T>
       </View>
+
+      {/* Today's plan */}
+      {planSettings ? (
+        <Card style={{ gap: 4, paddingVertical: 10 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <SectionTitle>Today's plan</SectionTitle>
+            <Pressable onPress={() => router.push('/plan')} hitSlop={8}>
+              <T color={c.accent} style={{ fontWeight: '700' }}>
+                Calendar →
+              </T>
+            </Pressable>
+          </View>
+          {todaySlots.length === 0 ? (
+            <T variant="small" style={{ paddingVertical: 6 }}>
+              No sessions planned today.
+            </T>
+          ) : todayLeft.length === 0 ? (
+            <T variant="small" style={{ paddingVertical: 6 }} color={c.done}>
+              All {todaySlots.length} sessions done today. Great work!
+            </T>
+          ) : (
+            <>
+              <T variant="small">
+                {todaySlots.length - todayLeft.length} of {todaySlots.length} sessions done
+              </T>
+              {todayLeft.slice(0, 2).map((sl, i) => (
+                <View key={`${sl.start}-${sl.task.topic.id}`} style={{ borderTopWidth: i ? 1 : 0, borderTopColor: c.line }}>
+                  <SlotRow slot={sl} today={today} />
+                </View>
+              ))}
+            </>
+          )}
+        </Card>
+      ) : (
+        <Pressable onPress={() => router.push('/plan-setup')}>
+          <Card style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+            <Ionicons name="calendar" size={26} color={c.accent} />
+            <View style={{ flex: 1 }}>
+              <T style={{ fontWeight: '800' }}>Make a study plan</T>
+              <T variant="small">Answer 9 questions and get an hour-by-hour timetable.</T>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={c.faint} />
+          </Card>
+        </Pressable>
+      )}
 
       {/* Quick stats */}
       <View style={{ flexDirection: 'row', gap: 10 }}>
