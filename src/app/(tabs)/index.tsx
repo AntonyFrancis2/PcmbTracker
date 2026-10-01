@@ -60,7 +60,7 @@ function PaceLine({ label, pace, color }: { label: string; pace: Pace; color: st
 export default function Home() {
   const c = usePalette();
   const insets = useSafeAreaInsets();
-  const { account, profile, progress, sync, update, plan: planSettings } = useStore();
+  const { account, profile, progress, sync, update, plan: planSettings, setAppearance } = useStore();
   const { plan, today } = usePlan();
   const todaySlots = plan?.days[today] ?? [];
   const todayLeft = todaySlots.filter((s) => !slotDone(progress, s, today));
@@ -119,11 +119,26 @@ export default function Home() {
           <T variant="small">{greeting()}</T>
           <T variant="title">{first ?? 'Student'}</T>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingTop: 6 }}>
-          <Ionicons name={sync === 'offline' ? 'cloud-offline-outline' : sync === 'device' ? 'phone-portrait-outline' : 'cloud-done-outline'} size={16} color={c.faint} />
-          <T variant="small" color={c.faint}>
-            {syncText}
-          </T>
+        <View style={{ alignItems: 'flex-end', gap: 8 }}>
+          <Pressable
+            accessibilityRole="switch"
+            accessibilityState={{ checked: c.dark }}
+            accessibilityLabel={c.dark ? 'Dark mode on. Switch to light mode' : 'Light mode on. Switch to dark mode'}
+            onPress={() => setAppearance(c.dark ? 'light' : 'dark')}
+            hitSlop={8}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 7, borderRadius: 999, borderWidth: 1, borderColor: c.line, backgroundColor: c.surface }}
+          >
+            <Ionicons name={c.dark ? 'moon' : 'sunny'} size={16} color={c.dark ? c.accent : c.gold} />
+            <T variant="small" style={{ fontWeight: '700' }} color={c.ink}>
+              {c.dark ? 'Dark' : 'Light'}
+            </T>
+          </Pressable>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <Ionicons name={sync === 'offline' ? 'cloud-offline-outline' : sync === 'device' ? 'phone-portrait-outline' : 'cloud-done-outline'} size={14} color={c.faint} />
+            <T variant="small" color={c.faint}>
+              {syncText}
+            </T>
+          </View>
         </View>
       </View>
 
