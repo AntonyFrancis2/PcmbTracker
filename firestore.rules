@@ -35,6 +35,12 @@ service cloud.firestore {
       allow write: if isOwner(uid);
     }
 
+    // Finished NEET practice tests.
+    match /quizzes/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isOwner(uid);
+    }
+
     // App version info for the "new version available" banner. Edit it from the Firebase console only.
     match /config/app {
       allow read: if request.auth != null;

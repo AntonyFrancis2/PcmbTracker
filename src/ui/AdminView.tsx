@@ -85,6 +85,10 @@ function StudentDetail({ row, onClose }: { row: StudentRow; onClose: () => void 
           Read by {row.firstReadTarget ? shortDate(row.firstReadTarget) : '—'} · Revise by {row.revisionTarget ? shortDate(row.revisionTarget) : '—'}
         </T>
         <PaceTag pace={row.pace} />
+        <T variant="small">
+          NEET tests {row.quiz.tests}
+          {row.quiz.tests ? ` · best ${row.quiz.bestPct}% · last ${row.quiz.lastPct}% (${ago(row.quiz.lastAt)})` : ''}
+        </T>
       </View>
       {row.badges.length > 0 && <T variant="small">Badges: {row.badges.join(', ')}</T>}
 
@@ -211,6 +215,7 @@ export function AdminView({
                 </T>
                 <T variant="small">Streak {r.streak}</T>
                 <T variant="small">Lv {r.level}</T>
+                {r.quiz.tests ? <T variant="small">Quiz last {r.quiz.lastPct}%</T> : null}
                 <PaceTag pace={r.pace} />
               </View>
             </Card>

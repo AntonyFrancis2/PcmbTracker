@@ -15,8 +15,11 @@ An Android app (and web app) where Class 12 students tick off every NCERT Physic
 | Home | Today's plan, level and XP, streak, read/revised counts, pace against the plan, next reward, next badge, subject cards, up-next chapters |
 | Plan | A 9-question form (start date, finish dates, study days, hours, start time, session length, mix, focus subject, days off) builds an hour-by-hour timetable of every topic left. Month calendar, day agenda, and it rebalances automatically when a day is missed |
 | Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters |
+| Quiz | NEET practice from 560 real questions (NEET 2024 code T3, 2025 code 45, 2026 3 May paper code 13). Pick subjects, papers and number of questions; time is capped at 1 minute per question and can only be lowered. Question palette, mark for review, auto-submit at 0:00, NEET marking (+4/−1/0), subject breakdown and answer review, past tests |
 | Badges | Level, colour themes unlocked by level, earned and locked badges with progress |
 | Me | My rewards, finish-by dates, subjects, privacy note, sign out, delete account |
+
+NEET questions: original question images from the MIT-licensed [Reja1/jee-neet-benchmark](https://huggingface.co/datasets/Reja1/jee-neet-benchmark) dataset (questions © NTA), compressed and bundled in `assets/neet/` so tests work offline. Answers were checked against NTA's keys: 2024 against the revised final key (26 Jul 2024), which fixed Q25 and Q122; 2026 against the provisional key; 2025 against a published code-45 key, with Q40 and Q152 accepting either answer. To rebuild: `python3 -I scripts/build-neet.py <neet-raw-folder> .`
 
 Plan estimates: 45 min per Physics/Maths sub-topic, 30 min per Chemistry/Biology sub-topic, revision about half that (`src/logic/planner.ts`).
 
@@ -45,7 +48,7 @@ plugins/          Config plugin that signs the release APK
 1. **Add a web app** (Project settings → Your apps → `</>`) and copy its config values.
 2. **Authentication → Sign-in method → Google → Enable.** Open it again and copy the **Web client ID** from *Web SDK configuration*.
 3. **Add an Android app** with package name `com.antonyfrancis.pcmbtracker` and the release key's **SHA-1** fingerprint (and SHA-256). Without this, Google sign-in fails on the phone. You don't need to download `google-services.json`.
-4. **Firestore Database → Create database** (production mode, region `asia-south1`), then paste `firestore.rules` into the **Rules** tab and publish. Republish whenever `firestore.rules` changes (v1.3.0 added `plans/{uid}`).
+4. **Firestore Database → Create database** (production mode, region `asia-south1`), then paste `firestore.rules` into the **Rules** tab and publish. Republish whenever `firestore.rules` changes (v1.3.0 added `plans/{uid}`, v1.4.0 added `quizzes/{uid}`).
 5. Optional, for the update banner: create document `config/app` with `latestVersion` (e.g. `"1.0.1"`) and `apkUrl` (link to the new APK).
 
 ### 2. GitHub (repository settings → Secrets and variables → Actions)

@@ -1,5 +1,6 @@
 import { SUBJECTS, SUBJECT_BY_KEY, type Chapter, type SubjectKey } from '../data/chapters';
 import type { Profile, Progress } from './types';
+import { quizSummary, type QuizBook } from './quiz';
 import { computePace, computeStats, computeXp, currentStreak, evaluateBadges, levelFor } from './gamify';
 import { toDay } from './dates';
 import { topicStats, type TopicStats } from './progress';
@@ -26,6 +27,8 @@ export type StudentRow = {
   pace: number | null;
   firstReadTarget: string | null;
   revisionTarget: string | null;
+  /** NEET practice tests: count, best and latest score (% of max marks). */
+  quiz: ReturnType<typeof quizSummary>;
   profile: Profile;
   progress: Progress;
 };
@@ -37,7 +40,7 @@ export function streamLabel(subjects: SubjectKey[]): string {
   return letters.join('');
 }
 
-export function studentRow(uid: string, profile: Profile, progress: Progress, now = Date.now()): StudentRow {
+export function studentRow(uid: string, profile: Profile, progress: Progress, now = Date.now(), quizzes: QuizBook | null = null): StudentRow {
   const stats = computeStats(profile, progress);
   const xp = computeXp(stats, profile);
   const lvl = levelFor(xp);
@@ -68,6 +71,7 @@ export function studentRow(uid: string, profile: Profile, progress: Progress, no
     pace: pace ? pace.diff : null,
     firstReadTarget: profile.firstReadTarget,
     revisionTarget: profile.revisionTarget,
+    quiz: quizSummary(quizzes),
     profile,
     progress,
   };

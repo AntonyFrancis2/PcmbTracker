@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { db } from '../lib/firebase';
 import { ADMIN_EMAILS } from '../config';
 import { studentRow, type StudentRow } from '../logic/admin';
+import type { QuizBook } from '../logic/quiz';
 import { emptyProgress, type Profile, type Progress } from '../logic/types';
 import { defaultProfile, useStore } from '../state/AppStore';
 import { AdminView } from '../ui/AdminView';
@@ -28,12 +29,18 @@ export default function Admin() {
     setLoading(true);
     setError(null);
     try {
-      const [users, progress] = await Promise.all([getDocs(collection(db, 'users')), getDocs(collection(db, 'progress'))]);
+      const [users, progress, quizzes] = await Promise.all([
+        getDocs(collection(db, 'users')),
+        getDocs(collection(db, 'progress')),
+        // Quiz scores are extra: an unpublished rule shouldn't break the page.
+        getDocs(collection(db, 'quizzes')).catch(() => null),
+      ]);
+      const quiz = new Map((quizzes?.docs ?? []).map((d) => [d.id, d.data() as QuizBook]));
       const prog = new Map(progress.docs.map((d) => [d.id, { ...emptyProgress(), ...(d.data() as Progress) }]));
       const ids = new Set([...users.docs.map((d) => d.id), ...prog.keys()]);
       const byId = new Map(users.docs.map((d) => [d.id, { ...defaultProfile(), ...(d.data() as Profile) }]));
       const now = Date.now();
-      setRows([...ids].map((id) => studentRow(id, byId.get(id) ?? defaultProfile(), prog.get(id) ?? emptyProgress(), now)));
+      setRows([...ids].map((id) => studentRow(id, byId.get(id) ?? defaultProfile(), prog.get(id) ?? emptyProgress(), now, quiz.get(id) ?? null)));
       setLoadedAt(now);
     } catch (e) {
       const code = (e as { code?: string }).code;

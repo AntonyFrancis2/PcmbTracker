@@ -11,6 +11,7 @@ import { emptyProgress, type Profile, type Progress, type Reward } from '../logi
 import { mergeProfile, mergeProgress, rateTopic as rateTopicMark, sameJSON, toggleMark } from '../logic/progress';
 import type { Confidence } from '../logic/types';
 import type { PlanSettings } from '../logic/planner';
+import { finishQuiz, mergeBooks, newQuiz, type ActiveQuiz, type QuizBook, type QuizResult } from '../logic/quiz';
 import { toDay } from '../logic/dates';
 import {
   computeStats,
@@ -56,6 +57,14 @@ type Store = {
   /** The student's study-plan answers (null until they fill the plan form). */
   plan: PlanSettings | null;
   savePlan: (s: PlanSettings | null) => void;
+  /** Finished NEET tests (synced) and the test in progress (this device only). */
+  quizBook: QuizBook;
+  activeQuiz: ActiveQuiz | null;
+  startQuiz: (ids: string[], limitMins: number) => void;
+  updateQuiz: (fn: (q: ActiveQuiz) => ActiveQuiz) => void;
+  /** Ends the test and saves the result. Returns the result id. */
+  submitQuiz: () => string | null;
+  discardQuiz: () => void;
   updateProfile: (patch: Partial<Profile>) => void;
   addReward: (title: string, milestone: string) => void;
   removeReward: (id: string) => void;
@@ -77,6 +86,9 @@ export const defaultProfile = (): Profile => ({
 
 const cacheKey = (uid: string) => `c12tracker:${uid}`;
 const planKey = (uid: string) => `c12tracker:plan:${uid}`;
+const quizKey = (uid: string) => `c12tracker:quizzes:${uid}`;
+const activeQuizKey = (uid: string) => `c12tracker:quiz-active:${uid}`;
+const EMPTY_BOOK: QuizBook = { results: [], updatedAt: 0 };
 const DEVICE_UID = 'on-device';
 
 /** Award badges and unlock rewards that are now met. Returns updated copies and what to celebrate. */
@@ -144,6 +156,10 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [appearance, setAppearanceState] = useState<Appearance>('system');
   const [plan, setPlanState] = useState<PlanSettings | null>(null);
   const planRef = useRef<PlanSettings | null>(null);
+  const [quizBook, setQuizBook] = useState<QuizBook>(EMPTY_BOOK);
+  const quizRef = useRef<QuizBook>(EMPTY_BOOK);
+  const [activeQuiz, setActiveQuiz] = useState<ActiveQuiz | null>(null);
+  const activeRef = useRef<ActiveQuiz | null>(null);
 
   useEffect(() => {
     AsyncStorage.getItem(APPEARANCE_KEY)
@@ -267,6 +283,16 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         planRef.current = null;
       }
       setPlanState(planRef.current);
+      try {
+        const [rawBook, rawActive] = await Promise.all([AsyncStorage.getItem(quizKey(uid)), AsyncStorage.getItem(activeQuizKey(uid))]);
+        quizRef.current = rawBook ? mergeBooks(JSON.parse(rawBook) as QuizBook, null) : EMPTY_BOOK;
+        activeRef.current = rawActive ? (JSON.parse(rawActive) as ActiveQuiz) : null;
+      } catch {
+        quizRef.current = EMPTY_BOOK;
+        activeRef.current = null;
+      }
+      setQuizBook(quizRef.current);
+      setActiveQuiz(activeRef.current);
       setStatus('ready');
     },
     [],
@@ -357,6 +383,22 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
           },
           () => {},
         ),
+        // Finished tests: a union across devices, so nothing is lost if two phones are used.
+        onSnapshot(
+          doc(firestore, 'quizzes', user.uid),
+          (s) => {
+            const remote = s.exists() ? (s.data() as QuizBook) : null;
+            const merged = mergeBooks(quizRef.current, remote);
+            const ids = (b: QuizBook | null) => (b?.results ?? []).map((r) => r.id).join();
+            if (ids(merged) !== ids(quizRef.current)) {
+              quizRef.current = merged;
+              setQuizBook(merged);
+              AsyncStorage.setItem(quizKey(user.uid), JSON.stringify(merged)).catch(() => {});
+            }
+            if (ids(merged) !== ids(remote)) setDoc(doc(firestore, 'quizzes', user.uid), merged).catch(() => {});
+          },
+          () => {},
+        ),
       );
 
       if (Platform.OS === 'android') {
@@ -395,8 +437,13 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     if (writeTimer.current) clearTimeout(writeTimer.current);
     await AsyncStorage.removeItem(cacheKey(uid)).catch(() => {});
     await AsyncStorage.removeItem(planKey(uid)).catch(() => {});
+    await AsyncStorage.multiRemove([quizKey(uid), activeQuizKey(uid)]).catch(() => {});
     planRef.current = null;
     setPlanState(null);
+    quizRef.current = EMPTY_BOOK;
+    setQuizBook(EMPTY_BOOK);
+    activeRef.current = null;
+    setActiveQuiz(null);
     if (uid === DEVICE_UID || !auth || !db) {
       live.current.profile = defaultProfile();
       live.current.progress = emptyProgress();
@@ -408,6 +455,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       deleteDoc(doc(db, 'users', uid)),
       deleteDoc(doc(db, 'progress', uid)),
       deleteDoc(doc(db, 'plans', uid)).catch(() => {}),
+      deleteDoc(doc(db, 'quizzes', uid)).catch(() => {}),
     ]);
     const user = auth.currentUser;
     if (user) {
@@ -492,6 +540,42 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const setActive = useCallback((q: ActiveQuiz | null) => {
+    activeRef.current = q;
+    setActiveQuiz(q);
+    const uid = live.current.uid;
+    if (!uid) return;
+    if (q) AsyncStorage.setItem(activeQuizKey(uid), JSON.stringify(q)).catch(() => {});
+    else AsyncStorage.removeItem(activeQuizKey(uid)).catch(() => {});
+  }, []);
+
+  const startQuiz = useCallback((ids: string[], limitMins: number) => setActive(newQuiz(ids, limitMins)), [setActive]);
+  const updateQuiz = useCallback(
+    (fn: (q: ActiveQuiz) => ActiveQuiz) => {
+      if (activeRef.current) setActive(fn(activeRef.current));
+    },
+    [setActive],
+  );
+  const discardQuiz = useCallback(() => setActive(null), [setActive]);
+
+  const submitQuiz = useCallback((): string | null => {
+    const q = activeRef.current;
+    if (!q) return null;
+    const result: QuizResult = finishQuiz(q);
+    const book = mergeBooks({ results: [result], updatedAt: Date.now() }, quizRef.current);
+    quizRef.current = book;
+    setQuizBook(book);
+    setActive(null);
+    const uid = live.current.uid;
+    if (uid) {
+      AsyncStorage.setItem(quizKey(uid), JSON.stringify(book)).catch(() => {});
+      if (db && uid !== DEVICE_UID) setDoc(doc(db, 'quizzes', uid), book).catch(() => {
+        // Saved on this device; it syncs once the quizzes rule is published.
+      });
+    }
+    return result.id;
+  }, [setActive]);
+
   const dismissCelebration = useCallback(() => setCelebrations((q) => q.slice(1)), []);
 
   const value = useMemo<Store>(
@@ -513,12 +597,18 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       setAppearance,
       plan,
       savePlan,
+      quizBook,
+      activeQuiz,
+      startQuiz,
+      updateQuiz,
+      submitQuiz,
+      discardQuiz,
       updateProfile,
       addReward,
       removeReward,
       dismissCelebration,
     }),
-    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, rateTopic, appearance, setAppearance, plan, savePlan, updateProfile, addReward, removeReward, dismissCelebration],
+    [status, account, profile, progress, sync, celebrations, update, signIn, signOut, deleteAccount, toggle, rateTopic, appearance, setAppearance, plan, savePlan, quizBook, activeQuiz, startQuiz, updateQuiz, submitQuiz, discardQuiz, updateProfile, addReward, removeReward, dismissCelebration],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

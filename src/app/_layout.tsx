@@ -34,6 +34,8 @@ function Gate() {
         <Stack.Protected guard={signedIn && profile.onboarded}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="plan-setup" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="quiz-run" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="quiz-result" />
         </Stack.Protected>
         {/* Admin page checks the account itself; data access is enforced by Firestore rules. */}
         <Stack.Screen name="admin" />
