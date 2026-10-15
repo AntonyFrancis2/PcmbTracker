@@ -7,7 +7,7 @@ import type { NeetSubject } from '../../data/neet';
 import { NEET_QUESTIONS } from '../../data/neet';
 import { shortDate } from '../../logic/dates';
 import {
-  formatClock, maxMinutes, pickQuestions, questionPool, QUIZ_SUBJECTS, QUIZ_YEARS, scoreQuiz, secondsLeft, seenIds, YEAR_NOTE,
+  formatClock, maxMinutes, pickQuestions, questionPool, QUIZ_CLASSES, QUIZ_SUBJECTS, QUIZ_YEARS, scoreQuiz, secondsLeft, seenIds, YEAR_NOTE,
 } from '../../logic/quiz';
 import { useStore } from '../../state/AppStore';
 import { Button, Card, Chip, SectionTitle, T } from '../../ui/components';
@@ -42,6 +42,7 @@ export default function QuizTab() {
   const { quizBook, activeQuiz, startQuiz, discardQuiz, submitQuiz } = useStore();
   const [subjects, setSubjects] = useState<NeetSubject[]>(['phy', 'che', 'bio']);
   const [years, setYears] = useState<number[]>([...QUIZ_YEARS]);
+  const [classes, setClasses] = useState<number[]>([...QUIZ_CLASSES]);
   const [fresh, setFresh] = useState(false);
   const [count, setCount] = useState(30);
   /** null = full time (1 min per question). A number = the student chose less. */
@@ -63,7 +64,7 @@ export default function QuizTab() {
   };
 
   const seen = useMemo(() => seenIds(quizBook), [quizBook]);
-  const pool = useMemo(() => questionPool(subjects, years, fresh ? seen : undefined), [subjects, years, fresh, seen]);
+  const pool = useMemo(() => questionPool(subjects, years, classes, fresh ? seen : undefined), [subjects, years, classes, fresh, seen]);
   const n = Math.min(count, pool.length);
   const cap = maxMinutes(n);
   const time = mins == null ? cap : Math.min(mins, cap);
@@ -126,17 +127,30 @@ export default function QuizTab() {
             </View>
           </Step>
 
-          <Step n={2} title="Papers" hint="NEET covers Class 11 and Class 12.">
+          <Step n={2} title="Class" hint="NEET asks from both. Pick one to practise just that year's syllabus.">
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+              {QUIZ_CLASSES.map((k) => (
+                <Chip
+                  key={k}
+                  label={`Class ${k} (${questionPool(subjects, years, [k]).length})`}
+                  selected={classes.includes(k)}
+                  onPress={() => toggle(classes, k as number, setClasses)}
+                />
+              ))}
+            </View>
+          </Step>
+
+          <Step n={3} title="Papers">
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {QUIZ_YEARS.map((y) => (
                 <Chip key={y} label={`NEET ${y}`} selected={years.includes(y)} onPress={() => toggle(years, y as number, setYears)} />
               ))}
             </View>
             {years.includes(2026) ? <T variant="small">2026 is the 3 May paper that NTA later cancelled. The questions are real; answers are from NTA's provisional key.</T> : null}
-            <Chip label={`Only questions I haven't tried (${questionPool(subjects, years, seen).length} left)`} selected={fresh} onPress={() => setFresh(!fresh)} />
+            <Chip label={`Only questions I haven't tried (${questionPool(subjects, years, classes, seen).length} left)`} selected={fresh} onPress={() => setFresh(!fresh)} />
           </Step>
 
-          <Step n={3} title="How many questions?" hint={`${pool.length} available with these choices.`}>
+          <Step n={4} title="How many questions?" hint={`${pool.length} available with these choices.`}>
             <NumberStepper
               label="questions"
               unit="questions"
@@ -153,7 +167,7 @@ export default function QuizTab() {
             </View>
           </Step>
 
-          <Step n={4} title="Time for the whole test" hint={`Up to ${cap} min (1 minute per question). You can make it shorter, not longer.`}>
+          <Step n={5} title="Time for the whole test" hint={`Up to ${cap} min (1 minute per question). You can make it shorter, not longer.`}>
             <NumberStepper
               label="minutes"
               unit={time === cap ? 'minutes (maximum)' : 'minutes'}

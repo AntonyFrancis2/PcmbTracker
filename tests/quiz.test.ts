@@ -11,6 +11,7 @@ test('question bank has 500+ real NEET questions with valid answers', () => {
   for (const q of NEET_QUESTIONS) {
     assert.ok(q.a.length >= 1 && q.a.every((a) => a >= 1 && a <= 4), q.id);
     assert.ok(q.w > 0 && q.h > 0);
+    assert.ok((q.c === 11 || q.c === 12) && q.ch.length > 0, q.id);
   }
   // Corrections against NTA keys.
   assert.deepEqual(BY_ID.get('N24T3025')!.a, [1]);
@@ -36,8 +37,13 @@ test('clock counts down from the start time and does not pause', () => {
 });
 
 test('picks the requested count from the filter, ordered Physics → Chemistry → Biology', () => {
-  const pool = questionPool(['phy', 'bio'], [2025]);
+  const pool = questionPool(['phy', 'bio'], [2025], [11, 12]);
   assert.equal(pool.length, 135);
+  const c11 = questionPool(['phy', 'che', 'bio'], [2024, 2025, 2026], [11]);
+  const c12 = questionPool(['phy', 'che', 'bio'], [2024, 2025, 2026], [12]);
+  assert.ok(c11.length > 150 && c12.length > 150);
+  assert.equal(c11.length + c12.length, NEET_QUESTIONS.length);
+  assert.ok(c11.every((q) => q.c === 11));
   let seed = 7;
   const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
   const ids = pickQuestions(pool, 30, rand);

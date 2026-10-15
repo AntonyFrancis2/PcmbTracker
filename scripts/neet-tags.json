@@ -1,0 +1,2242 @@
+{
+"N24T3001": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N24T3002": {
+"c": 12,
+"ch": "Magnetism and Matter"
+},
+"N24T3003": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N24T3004": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N24T3005": {
+"c": 12,
+"ch": "Alternating Current"
+},
+"N24T3006": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N24T3007": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N24T3008": {
+"c": 11,
+"ch": "Mechanical Properties of Solids"
+},
+"N24T3009": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N24T3010": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N24T3011": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N24T3012": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N24T3013": {
+"c": 12,
+"ch": "Electromagnetic Induction"
+},
+"N24T3014": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N24T3015": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N24T3016": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N24T3017": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N24T3018": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N24T3019": {
+"c": 12,
+"ch": "Atoms"
+},
+"N24T3020": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N24T3021": {
+"c": 12,
+"ch": "Nuclei"
+},
+"N24T3022": {
+"c": 11,
+"ch": "Work, Energy and Power"
+},
+"N24T3023": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N24T3024": {
+"c": 11,
+"ch": "Gravitation"
+},
+"N24T3025": {
+"c": 12,
+"ch": "Atoms"
+},
+"N24T3026": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N24T3027": {
+"c": 11,
+"ch": "Motion in a Plane"
+},
+"N24T3028": {
+"c": 11,
+"ch": "Mechanical Properties of Fluids"
+},
+"N24T3029": {
+"c": 12,
+"ch": "Magnetism and Matter"
+},
+"N24T3030": {
+"c": 11,
+"ch": "Work, Energy and Power"
+},
+"N24T3031": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N24T3032": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N24T3033": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N24T3034": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N24T3035": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N24T3036": {
+"c": 11,
+"ch": "Kinetic Theory"
+},
+"N24T3037": {
+"c": 12,
+"ch": "Electromagnetic Waves"
+},
+"N24T3038": {
+"c": 12,
+"ch": "Electromagnetic Waves"
+},
+"N24T3039": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N24T3040": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N24T3041": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N24T3042": {
+"c": 11,
+"ch": "Thermal Properties of Matter"
+},
+"N24T3043": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N24T3044": {
+"c": 12,
+"ch": "Magnetism and Matter"
+},
+"N24T3045": {
+"c": 12,
+"ch": "Alternating Current"
+},
+"N24T3046": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N24T3047": {
+"c": 11,
+"ch": "Motion in a Straight Line"
+},
+"N24T3048": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N24T3049": {
+"c": 11,
+"ch": "Gravitation"
+},
+"N24T3050": {
+"c": 12,
+"ch": "Electromagnetic Induction"
+},
+"N24T3051": {
+"c": 12,
+"ch": "Electrochemistry"
+},
+"N24T3052": {
+"c": 11,
+"ch": "Redox Reactions"
+},
+"N24T3053": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N24T3054": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N24T3055": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N24T3056": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N24T3057": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N24T3058": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N24T3059": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N24T3060": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N24T3061": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N24T3062": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N24T3063": {
+"c": 12,
+"ch": "Alcohols, Phenols and Ethers"
+},
+"N24T3064": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N24T3065": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N24T3066": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N24T3067": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N24T3068": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N24T3069": {
+"c": 12,
+"ch": "Biomolecules"
+},
+"N24T3070": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N24T3071": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N24T3072": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N24T3073": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N24T3074": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N24T3075": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N24T3076": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N24T3077": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N24T3078": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N24T3079": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N24T3080": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N24T3081": {
+"c": 12,
+"ch": "Amines"
+},
+"N24T3082": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N24T3083": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N24T3084": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N24T3085": {
+"c": 12,
+"ch": "Solutions"
+},
+"N24T3086": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N24T3087": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N24T3088": {
+"c": 12,
+"ch": "Solutions"
+},
+"N24T3089": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N24T3090": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N24T3091": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N24T3092": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N24T3093": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N24T3094": {
+"c": 12,
+"ch": "Amines"
+},
+"N24T3095": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N24T3096": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N24T3097": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N24T3098": {
+"c": 12,
+"ch": "Electrochemistry"
+},
+"N24T3099": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N24T3100": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N24T3101": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N24T3102": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N24T3103": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3104": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N24T3105": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N24T3106": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N24T3107": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N24T3108": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N24T3109": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N24T3110": {
+"c": 11,
+"ch": "Biological Classification"
+},
+"N24T3111": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N24T3112": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N24T3113": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N24T3114": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N24T3115": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N24T3116": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N24T3117": {
+"c": 11,
+"ch": "Biological Classification"
+},
+"N24T3118": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3119": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3120": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3121": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3122": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N24T3123": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N24T3124": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N24T3125": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3126": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N24T3127": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N24T3128": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3129": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3130": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3131": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N24T3132": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N24T3133": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N24T3134": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N24T3135": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N24T3136": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N24T3137": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N24T3138": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N24T3139": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N24T3140": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3141": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3142": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N24T3143": {
+"c": 11,
+"ch": "Respiration in Plants"
+},
+"N24T3144": {
+"c": 11,
+"ch": "Respiration in Plants"
+},
+"N24T3145": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3146": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N24T3147": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N24T3148": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N24T3149": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N24T3150": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N24T3151": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N24T3152": {
+"c": 12,
+"ch": "Reproductive Health"
+},
+"N24T3153": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N24T3154": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N24T3155": {
+"c": 11,
+"ch": "Neural Control and Coordination"
+},
+"N24T3156": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N24T3157": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3158": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N24T3159": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N24T3160": {
+"c": 11,
+"ch": "Locomotion and Movement"
+},
+"N24T3161": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3162": {
+"c": 12,
+"ch": "Evolution"
+},
+"N24T3163": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+},
+"N24T3164": {
+"c": 12,
+"ch": "Evolution"
+},
+"N24T3165": {
+"c": 12,
+"ch": "Evolution"
+},
+"N24T3166": {
+"c": 11,
+"ch": "Body Fluids and Circulation"
+},
+"N24T3167": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+},
+"N24T3168": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N24T3169": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N24T3170": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N24T3171": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N24T3172": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N24T3173": {
+"c": 11,
+"ch": "Excretory Products and their Elimination"
+},
+"N24T3174": {
+"c": 11,
+"ch": "Locomotion and Movement"
+},
+"N24T3175": {
+"c": 12,
+"ch": "Reproductive Health"
+},
+"N24T3176": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N24T3177": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N24T3178": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N24T3179": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N24T3180": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N24T3181": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N24T3182": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N24T3183": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N24T3184": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N24T3185": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3186": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N24T3187": {
+"c": 12,
+"ch": "Evolution"
+},
+"N24T3188": {
+"c": 11,
+"ch": "Neural Control and Coordination"
+},
+"N24T3189": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N24T3190": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N24T3191": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N24T3192": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N24T3193": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N24T3194": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N24T3195": {
+"c": 11,
+"ch": "Excretory Products and their Elimination"
+},
+"N24T3196": {
+"c": 11,
+"ch": "Body Fluids and Circulation"
+},
+"N24T3197": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N24T3198": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N24T3199": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N24T3200": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545001": {
+"c": 11,
+"ch": "Mechanical Properties of Fluids"
+},
+"N2545002": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N2545003": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N2545004": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N2545005": {
+"c": 11,
+"ch": "Work, Energy and Power"
+},
+"N2545006": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N2545007": {
+"c": 11,
+"ch": "Work, Energy and Power"
+},
+"N2545008": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N2545009": {
+"c": 12,
+"ch": "Electromagnetic Waves"
+},
+"N2545010": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N2545011": {
+"c": 12,
+"ch": "Electromagnetic Induction"
+},
+"N2545012": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N2545013": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N2545014": {
+"c": 11,
+"ch": "Kinetic Theory"
+},
+"N2545015": {
+"c": 11,
+"ch": "Motion in a Straight Line"
+},
+"N2545016": {
+"c": 12,
+"ch": "Alternating Current"
+},
+"N2545017": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N2545018": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N2545019": {
+"c": 11,
+"ch": "Thermal Properties of Matter"
+},
+"N2545020": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N2545021": {
+"c": 11,
+"ch": "Motion in a Straight Line"
+},
+"N2545022": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N2545023": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N2545024": {
+"c": 11,
+"ch": "Mechanical Properties of Fluids"
+},
+"N2545025": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N2545026": {
+"c": 12,
+"ch": "Electromagnetic Waves"
+},
+"N2545027": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N2545028": {
+"c": 12,
+"ch": "Electric Charges and Fields"
+},
+"N2545029": {
+"c": 11,
+"ch": "Kinetic Theory"
+},
+"N2545030": {
+"c": 12,
+"ch": "Atoms"
+},
+"N2545031": {
+"c": 11,
+"ch": "Gravitation"
+},
+"N2545032": {
+"c": 11,
+"ch": "Gravitation"
+},
+"N2545033": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N2545034": {
+"c": 12,
+"ch": "Atoms"
+},
+"N2545035": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N2545036": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N2545037": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N2545038": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N2545039": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N2545040": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N2545041": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N2545042": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N2545043": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N2545044": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N2545045": {
+"c": 11,
+"ch": "Waves"
+},
+"N2545046": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N2545047": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N2545048": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N2545049": {
+"c": 12,
+"ch": "Amines"
+},
+"N2545050": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N2545051": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N2545052": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N2545053": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N2545054": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N2545055": {
+"c": 11,
+"ch": "Redox Reactions"
+},
+"N2545056": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N2545057": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N2545058": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N2545059": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N2545060": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N2545061": {
+"c": 12,
+"ch": "Electrochemistry"
+},
+"N2545062": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N2545063": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N2545064": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N2545065": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N2545066": {
+"c": 12,
+"ch": "Solutions"
+},
+"N2545067": {
+"c": 12,
+"ch": "Amines"
+},
+"N2545068": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N2545069": {
+"c": 12,
+"ch": "Biomolecules"
+},
+"N2545070": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N2545071": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N2545072": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N2545073": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N2545074": {
+"c": 12,
+"ch": "Amines"
+},
+"N2545075": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N2545076": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N2545077": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N2545078": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N2545079": {
+"c": 12,
+"ch": "Solutions"
+},
+"N2545080": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N2545081": {
+"c": 12,
+"ch": "Solutions"
+},
+"N2545082": {
+"c": 12,
+"ch": "Biomolecules"
+},
+"N2545083": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N2545084": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N2545085": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N2545086": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N2545087": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N2545088": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N2545089": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N2545090": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N2545091": {
+"c": 11,
+"ch": "Respiration in Plants"
+},
+"N2545092": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545093": {
+"c": 12,
+"ch": "Reproductive Health"
+},
+"N2545094": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N2545095": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545096": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545097": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N2545098": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545099": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N2545100": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N2545101": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+},
+"N2545102": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N2545103": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N2545104": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N2545105": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N2545106": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545107": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N2545108": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N2545109": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N2545110": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N2545111": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N2545112": {
+"c": 11,
+"ch": "Body Fluids and Circulation"
+},
+"N2545113": {
+"c": 11,
+"ch": "Biological Classification"
+},
+"N2545114": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545115": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545116": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N2545117": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N2545118": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N2545119": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N2545120": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N2545121": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545122": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N2545123": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N2545124": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N2545125": {
+"c": 11,
+"ch": "Excretory Products and their Elimination"
+},
+"N2545126": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545127": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N2545128": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545129": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545130": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N2545131": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N2545132": {
+"c": 11,
+"ch": "Biological Classification"
+},
+"N2545133": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N2545134": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545135": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N2545136": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545137": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N2545138": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N2545139": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N2545140": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N2545141": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N2545142": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N2545143": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N2545144": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N2545145": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N2545146": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545147": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N2545148": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N2545149": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N2545150": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N2545151": {
+"c": 12,
+"ch": "Evolution"
+},
+"N2545152": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N2545153": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N2545154": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N2545155": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N2545156": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N2545157": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N2545158": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N2545159": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N2545160": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N2545161": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N2545162": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N2545163": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545164": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N2545165": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N2545166": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N2545167": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N2545168": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N2545169": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N2545170": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N2545171": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N2545172": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545173": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N2545174": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N2545175": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N2545176": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N2545177": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N2545178": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N2545179": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N2545180": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N26C13001": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N26C13002": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N26C13003": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N26C13004": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N26C13005": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N26C13006": {
+"c": 11,
+"ch": "Mechanical Properties of Fluids"
+},
+"N26C13007": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N26C13008": {
+"c": 11,
+"ch": "Mechanical Properties of Solids"
+},
+"N26C13009": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N26C13010": {
+"c": 11,
+"ch": "Gravitation"
+},
+"N26C13011": {
+"c": 11,
+"ch": "Motion in a Straight Line"
+},
+"N26C13012": {
+"c": 11,
+"ch": "Work, Energy and Power"
+},
+"N26C13013": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N26C13014": {
+"c": 12,
+"ch": "Alternating Current"
+},
+"N26C13015": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N26C13016": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N26C13017": {
+"c": 12,
+"ch": "Alternating Current"
+},
+"N26C13018": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N26C13019": {
+"c": 12,
+"ch": "Nuclei"
+},
+"N26C13020": {
+"c": 12,
+"ch": "Wave Optics"
+},
+"N26C13021": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N26C13022": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N26C13023": {
+"c": 11,
+"ch": "Oscillations"
+},
+"N26C13024": {
+"c": 12,
+"ch": "Electrostatic Potential and Capacitance"
+},
+"N26C13025": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N26C13026": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N26C13027": {
+"c": 12,
+"ch": "Nuclei"
+},
+"N26C13028": {
+"c": 12,
+"ch": "Moving Charges and Magnetism"
+},
+"N26C13029": {
+"c": 11,
+"ch": "System of Particles and Rotational Motion"
+},
+"N26C13030": {
+"c": 11,
+"ch": "Waves"
+},
+"N26C13031": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N26C13032": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N26C13033": {
+"c": 11,
+"ch": "Kinetic Theory"
+},
+"N26C13034": {
+"c": 12,
+"ch": "Electromagnetic Waves"
+},
+"N26C13035": {
+"c": 11,
+"ch": "Laws of Motion"
+},
+"N26C13036": {
+"c": 12,
+"ch": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+},
+"N26C13037": {
+"c": 12,
+"ch": "Dual Nature of Radiation and Matter"
+},
+"N26C13038": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N26C13039": {
+"c": 12,
+"ch": "Electromagnetic Induction"
+},
+"N26C13040": {
+"c": 11,
+"ch": "Motion in a Straight Line"
+},
+"N26C13041": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N26C13042": {
+"c": 11,
+"ch": "Units and Measurement"
+},
+"N26C13043": {
+"c": 12,
+"ch": "Ray Optics and Optical Instruments"
+},
+"N26C13044": {
+"c": 12,
+"ch": "Atoms"
+},
+"N26C13045": {
+"c": 12,
+"ch": "Current Electricity"
+},
+"N26C13046": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N26C13047": {
+"c": 12,
+"ch": "Electrochemistry"
+},
+"N26C13048": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N26C13049": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N26C13050": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N26C13051": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N26C13052": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N26C13053": {
+"c": 12,
+"ch": "Amines"
+},
+"N26C13054": {
+"c": 12,
+"ch": "Biomolecules"
+},
+"N26C13055": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N26C13056": {
+"c": 12,
+"ch": "Solutions"
+},
+"N26C13057": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N26C13058": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N26C13059": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N26C13060": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N26C13061": {
+"c": 12,
+"ch": "p-Block Elements (Groups 15-18, old Class 12)"
+},
+"N26C13062": {
+"c": 11,
+"ch": "Thermodynamics"
+},
+"N26C13063": {
+"c": 12,
+"ch": "Aldehydes, Ketones and Carboxylic Acids"
+},
+"N26C13064": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N26C13065": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N26C13066": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N26C13067": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N26C13068": {
+"c": 12,
+"ch": "Chemical Kinetics"
+},
+"N26C13069": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N26C13070": {
+"c": 11,
+"ch": "Some Basic Concepts of Chemistry"
+},
+"N26C13071": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N26C13072": {
+"c": 12,
+"ch": "Alcohols, Phenols and Ethers"
+},
+"N26C13073": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N26C13074": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N26C13075": {
+"c": 12,
+"ch": "Solutions"
+},
+"N26C13076": {
+"c": 12,
+"ch": "Coordination Compounds"
+},
+"N26C13077": {
+"c": 12,
+"ch": "Alcohols, Phenols and Ethers"
+},
+"N26C13078": {
+"c": 11,
+"ch": "Chemical Bonding and Molecular Structure"
+},
+"N26C13079": {
+"c": 12,
+"ch": "Electrochemistry"
+},
+"N26C13080": {
+"c": 11,
+"ch": "Structure of Atom"
+},
+"N26C13081": {
+"c": 12,
+"ch": "Amines"
+},
+"N26C13082": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N26C13083": {
+"c": 11,
+"ch": "Hydrocarbons"
+},
+"N26C13084": {
+"c": 11,
+"ch": "p-Block Elements (Groups 13-14, old Class 11)"
+},
+"N26C13085": {
+"c": 11,
+"ch": "Equilibrium"
+},
+"N26C13086": {
+"c": 11,
+"ch": "Classification of Elements and Periodicity in Properties"
+},
+"N26C13087": {
+"c": 12,
+"ch": "Haloalkanes and Haloarenes"
+},
+"N26C13088": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N26C13089": {
+"c": 12,
+"ch": "The d- and f-Block Elements"
+},
+"N26C13090": {
+"c": 11,
+"ch": "Organic Chemistry: Some Basic Principles and Techniques"
+},
+"N26C13091": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N26C13092": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N26C13093": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13094": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N26C13095": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N26C13096": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N26C13097": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N26C13098": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N26C13099": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N26C13100": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N26C13101": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N26C13102": {
+"c": 11,
+"ch": "Cell Cycle and Cell Division"
+},
+"N26C13103": {
+"c": 11,
+"ch": "Respiration in Plants"
+},
+"N26C13104": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N26C13105": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N26C13106": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N26C13107": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N26C13108": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N26C13109": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N26C13110": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N26C13111": {
+"c": 11,
+"ch": "Biological Classification"
+},
+"N26C13112": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N26C13113": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N26C13114": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N26C13115": {
+"c": 12,
+"ch": "Sexual Reproduction in Flowering Plants"
+},
+"N26C13116": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N26C13117": {
+"c": 11,
+"ch": "Plant Growth and Development"
+},
+"N26C13118": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N26C13119": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N26C13120": {
+"c": 11,
+"ch": "Plant Kingdom"
+},
+"N26C13121": {
+"c": 12,
+"ch": "Molecular Basis of Inheritance"
+},
+"N26C13122": {
+"c": 11,
+"ch": "Morphology of Flowering Plants"
+},
+"N26C13123": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N26C13124": {
+"c": 11,
+"ch": "Anatomy of Flowering Plants"
+},
+"N26C13125": {
+"c": 12,
+"ch": "Biodiversity and Conservation"
+},
+"N26C13126": {
+"c": 11,
+"ch": "The Living World"
+},
+"N26C13127": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13128": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N26C13129": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N26C13130": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N26C13131": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13132": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N26C13133": {
+"c": 11,
+"ch": "Photosynthesis in Higher Plants"
+},
+"N26C13134": {
+"c": 11,
+"ch": "Respiration in Plants"
+},
+"N26C13135": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N26C13136": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13137": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+},
+"N26C13138": {
+"c": 12,
+"ch": "Biotechnology: Principles and Processes"
+},
+"N26C13139": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N26C13140": {
+"c": 12,
+"ch": "Evolution"
+},
+"N26C13141": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N26C13142": {
+"c": 12,
+"ch": "Ecosystem"
+},
+"N26C13143": {
+"c": 11,
+"ch": "Excretory Products and their Elimination"
+},
+"N26C13144": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N26C13145": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13146": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+},
+"N26C13147": {
+"c": 11,
+"ch": "Biomolecules"
+},
+"N26C13148": {
+"c": 12,
+"ch": "Microbes in Human Welfare"
+},
+"N26C13149": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N26C13150": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N26C13151": {
+"c": 12,
+"ch": "Organisms and Populations"
+},
+"N26C13152": {
+"c": 11,
+"ch": "Locomotion and Movement"
+},
+"N26C13153": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N26C13154": {
+"c": 11,
+"ch": "Cell: The Unit of Life"
+},
+"N26C13155": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N26C13156": {
+"c": 11,
+"ch": "Excretory Products and their Elimination"
+},
+"N26C13157": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N26C13158": {
+"c": 11,
+"ch": "Chemical Coordination and Integration"
+},
+"N26C13159": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13160": {
+"c": 11,
+"ch": "Structural Organisation in Animals"
+},
+"N26C13161": {
+"c": 12,
+"ch": "Biotechnology and its Applications"
+},
+"N26C13162": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N26C13163": {
+"c": 11,
+"ch": "Body Fluids and Circulation"
+},
+"N26C13164": {
+"c": 12,
+"ch": "Evolution"
+},
+"N26C13165": {
+"c": 12,
+"ch": "Reproductive Health"
+},
+"N26C13166": {
+"c": 12,
+"ch": "Human Health and Disease"
+},
+"N26C13167": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N26C13168": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N26C13169": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N26C13170": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N26C13171": {
+"c": 11,
+"ch": "Locomotion and Movement"
+},
+"N26C13172": {
+"c": 12,
+"ch": "Reproductive Health"
+},
+"N26C13173": {
+"c": 11,
+"ch": "Locomotion and Movement"
+},
+"N26C13174": {
+"c": 12,
+"ch": "Human Reproduction"
+},
+"N26C13175": {
+"c": 11,
+"ch": "Body Fluids and Circulation"
+},
+"N26C13176": {
+"c": 11,
+"ch": "Animal Kingdom"
+},
+"N26C13177": {
+"c": 12,
+"ch": "Principles of Inheritance and Variation"
+},
+"N26C13178": {
+"c": 12,
+"ch": "Evolution"
+},
+"N26C13179": {
+"c": 11,
+"ch": "Neural Control and Coordination"
+},
+"N26C13180": {
+"c": 11,
+"ch": "Breathing and Exchange of Gases"
+}
+}

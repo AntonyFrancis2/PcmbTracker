@@ -108,8 +108,8 @@ export function SubjectTag({ q }: { q: NeetQuestion }) {
       <T variant="small" style={{ fontWeight: '700' }} color={color}>
         {subjectName(q.s)}
       </T>
-      <T variant="small" color={c.faint}>
-        · NEET {q.y} · Q{q.n}
+      <T variant="small" color={c.faint} numberOfLines={1} style={{ flexShrink: 1 }}>
+        · Class {q.c} · NEET {q.y} Q{q.n}
       </T>
     </View>
   );

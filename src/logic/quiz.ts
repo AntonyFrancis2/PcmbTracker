@@ -11,6 +11,7 @@ export const QUIZ_SUBJECTS: { key: NeetSubject; name: string }[] = [
   { key: 'bio', name: 'Biology' },
 ];
 export const QUIZ_YEARS = [2024, 2025, 2026] as const;
+export const QUIZ_CLASSES = [11, 12] as const;
 export const YEAR_NOTE: Record<number, string> = {
   2024: 'NEET 2024 (code T3)',
   2025: 'NEET 2025 (code 45)',
@@ -55,8 +56,8 @@ export function clampMinutes(mins: number, count: number): number {
   return Math.min(maxMinutes(count), Math.max(1, Math.round(mins)));
 }
 
-export function questionPool(subjects: NeetSubject[], years: number[], exclude?: Set<string>): NeetQuestion[] {
-  return NEET_QUESTIONS.filter((q) => subjects.includes(q.s) && years.includes(q.y) && !exclude?.has(q.id));
+export function questionPool(subjects: NeetSubject[], years: number[], classes: number[], exclude?: Set<string>): NeetQuestion[] {
+  return NEET_QUESTIONS.filter((q) => subjects.includes(q.s) && years.includes(q.y) && classes.includes(q.c) && !exclude?.has(q.id));
 }
 
 /** Random pick, then ordered Physics → Chemistry → Biology like the real paper. */
