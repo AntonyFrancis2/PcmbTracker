@@ -7,14 +7,14 @@ import type { NeetSubject } from '../../data/neet';
 import { NEET_QUESTIONS } from '../../data/neet';
 import { shortDate } from '../../logic/dates';
 import {
-  formatClock, maxMinutes, pickQuestions, questionPool, QUIZ_CLASSES, QUIZ_SUBJECTS, QUIZ_YEARS, scoreQuiz, secondsLeft, seenIds, YEAR_NOTE,
+  formatClock, maxMinutes, MAX_QUESTIONS, pickQuestions, questionPool, QUIZ_CLASSES, QUIZ_SUBJECTS, QUIZ_YEARS, scoreQuiz, secondsLeft, seenIds, YEAR_NOTE,
 } from '../../logic/quiz';
 import { useStore } from '../../state/AppStore';
 import { Button, Card, Chip, SectionTitle, T } from '../../ui/components';
 import { NumberStepper } from '../../ui/QuizParts';
 import { usePalette, radius } from '../../ui/theme';
 
-const PRESETS = [10, 30, 45, 90, 180];
+const PRESETS = [10, 25, 50, 75, 100];
 
 function Step({ n, title, hint, children }: { n: number; title: string; hint?: string; children: React.ReactNode }) {
   const c = usePalette();
@@ -65,7 +65,7 @@ export default function QuizTab() {
 
   const seen = useMemo(() => seenIds(quizBook), [quizBook]);
   const pool = useMemo(() => questionPool(subjects, years, classes, fresh ? seen : undefined), [subjects, years, classes, fresh, seen]);
-  const n = Math.min(count, pool.length);
+  const n = Math.min(count, pool.length, MAX_QUESTIONS);
   const cap = maxMinutes(n);
   const time = mins == null ? cap : Math.min(mins, cap);
 
@@ -150,13 +150,13 @@ export default function QuizTab() {
             <Chip label={`Only questions I haven't tried (${questionPool(subjects, years, classes, seen).length} left)`} selected={fresh} onPress={() => setFresh(!fresh)} />
           </Step>
 
-          <Step n={4} title="How many questions?" hint={`${pool.length} available with these choices.`}>
+          <Step n={4} title="How many questions?" hint={`Up to ${MAX_QUESTIONS} per test. ${pool.length} available with these choices.`}>
             <NumberStepper
               label="questions"
               unit="questions"
               value={n}
               min={1}
-              max={Math.max(1, pool.length)}
+              max={Math.max(1, Math.min(pool.length, MAX_QUESTIONS))}
               step={(v, d) => (d > 0 ? (v < 5 ? v + 1 : Math.floor(v / 5) * 5 + 5) : v <= 5 ? v - 1 : Math.ceil(v / 5) * 5 - 5)}
               onChange={setCount}
             />

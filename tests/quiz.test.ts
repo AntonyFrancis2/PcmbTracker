@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { NEET_QUESTIONS } from '../src/data/neet';
 import {
-  BY_ID, clampMinutes, finishQuiz, formatClock, isCorrect, maxMinutes, mergeBooks, newQuiz, pickQuestions, questionPool, scoreQuiz, secondsLeft,
+  BY_ID, MAX_QUESTIONS, clampMinutes, finishQuiz, formatClock, isCorrect, maxMinutes, mergeBooks, newQuiz, pickQuestions, questionPool, scoreQuiz, secondsLeft,
 } from '../src/logic/quiz';
 
 test('question bank has 500+ real NEET questions with valid answers', () => {
@@ -74,4 +74,12 @@ test('quiz history merges across devices without duplicates', () => {
   assert.deepEqual(m.results.map((x) => x.id), ['c', 'b', 'a']);
   assert.equal(formatClock(245), '4:05');
   assert.equal(formatClock(3729), '1:02:09');
+});
+
+test('a test never has more than 100 questions', () => {
+  const ids = pickQuestions(questionPool(['phy', 'che', 'bio'], [2024, 2025, 2026], [11, 12]), 500);
+  const q = newQuiz(ids, 500, 0);
+  assert.equal(MAX_QUESTIONS, 100);
+  assert.equal(q.ids.length, 100);
+  assert.equal(q.limitSecs, 100 * 60);
 });

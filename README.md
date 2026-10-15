@@ -15,7 +15,7 @@ An Android app (and web app) where Class 12 students tick off every NCERT Physic
 | Home | Today's plan, level and XP, streak, read/revised counts, pace against the plan, next reward, next badge, subject cards, up-next chapters |
 | Plan | A 9-question form (start date, finish dates, study days, hours, start time, session length, mix, focus subject, days off) builds an hour-by-hour timetable of every topic left. Month calendar, day agenda, and it rebalances automatically when a day is missed |
 | Chapters | 50 chapters by subject and book part; **1st** and **Rev** ticks with dates; filters |
-| Quiz | NEET practice from 560 real questions (NEET 2024 code T3, 2025 code 45, 2026 3 May paper code 13). Pick subjects, Class 11 / Class 12 / both, papers and number of questions; time is capped at 1 minute per question and can only be lowered. Question palette, mark for review, auto-submit at 0:00, NEET marking (+4/−1/0), subject breakdown and answer review, past tests |
+| Quiz | NEET practice from 560 real questions (NEET 2024 code T3, 2025 code 45, 2026 3 May paper code 13). Pick subjects, Class 11 / Class 12 / both, papers and number of questions (up to 100 per test); time is capped at 1 minute per question and can only be lowered. Question palette, mark for review, auto-submit at 0:00, NEET marking (+4/−1/0), subject breakdown and answer review, past tests |
 | Badges | Level, colour themes unlocked by level, earned and locked badges with progress |
 | Me | My rewards, finish-by dates, subjects, privacy note, sign out, delete account |
 

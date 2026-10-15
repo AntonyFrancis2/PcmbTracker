@@ -4,6 +4,8 @@ import { NEET_QUESTIONS, type NeetQuestion, type NeetSubject } from '../data/nee
 export const MARKS = { correct: 4, wrong: -1 } as const;
 /** The test can never be longer than one minute per question. */
 export const MAX_MINS_PER_QUESTION = 1;
+/** Longest test a student can set up. */
+export const MAX_QUESTIONS = 100;
 
 export const QUIZ_SUBJECTS: { key: NeetSubject; name: string }[] = [
   { key: 'phy', name: 'Physics' },
@@ -76,6 +78,7 @@ export function pickQuestions(pool: NeetQuestion[], count: number, rand: () => n
 }
 
 export function newQuiz(ids: string[], limitMins: number, now = Date.now()): ActiveQuiz {
+  ids = ids.slice(0, MAX_QUESTIONS);
   return {
     id: `q${now.toString(36)}`,
     startedAt: now,
