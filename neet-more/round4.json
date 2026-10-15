@@ -1,0 +1,17 @@
+{
+ "https://nta.ac.in/NoticeBoardArchive": [
+  "no hits, len 2261211"
+ ],
+ "https://www.nta.ac.in/NoticeBoardArchive": [
+  "no hits, len 2261211"
+ ],
+ "https://nta.ac.in/Notices": [
+  "ERROR HTTP Error 404: Not Found"
+ ],
+ "https://ntaneet.nic.in/": [
+  "ERROR <urlopen error [Errno -5] No address associated with hostname>"
+ ],
+ "https://nta.ac.in/Neetexam": [
+  "ERROR HTTP Error 404: Not Found"
+ ]
+}
