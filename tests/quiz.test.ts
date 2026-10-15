@@ -2,11 +2,15 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { NEET_QUESTIONS } from '../src/data/neet';
 import {
-  BY_ID, MAX_QUESTIONS, clampMinutes, finishQuiz, formatClock, isCorrect, maxMinutes, mergeBooks, newQuiz, pickQuestions, questionPool, scoreQuiz, secondsLeft,
+  BY_ID, MAX_QUESTIONS, QUIZ_YEARS, clampMinutes, finishQuiz, formatClock, isCorrect, maxMinutes, mergeBooks, newQuiz, pickQuestions, questionPool, scoreQuiz, secondsLeft,
 } from '../src/logic/quiz';
 
 test('question bank has 500+ real NEET questions with valid answers', () => {
-  assert.ok(NEET_QUESTIONS.length >= 500);
+  assert.ok(NEET_QUESTIONS.length >= 1100);
+  assert.deepEqual([...new Set(NEET_QUESTIONS.map((q) => q.y))].sort(), [...QUIZ_YEARS]);
+  // NTA dropped 2023 Q2; 2023 Q150 accepts (1) or (3).
+  assert.equal(BY_ID.get('N23E1002'), undefined);
+  assert.deepEqual(BY_ID.get('N23E1150')!.a, [1, 3]);
   assert.equal(new Set(NEET_QUESTIONS.map((q) => q.id)).size, NEET_QUESTIONS.length);
   for (const q of NEET_QUESTIONS) {
     assert.ok(q.a.length >= 1 && q.a.every((a) => a >= 1 && a <= 4), q.id);
@@ -39,8 +43,8 @@ test('clock counts down from the start time and does not pause', () => {
 test('picks the requested count from the filter, ordered Physics → Chemistry → Biology', () => {
   const pool = questionPool(['phy', 'bio'], [2025], [11, 12]);
   assert.equal(pool.length, 135);
-  const c11 = questionPool(['phy', 'che', 'bio'], [2024, 2025, 2026], [11]);
-  const c12 = questionPool(['phy', 'che', 'bio'], [2024, 2025, 2026], [12]);
+  const c11 = questionPool(['phy', 'che', 'bio'], [...QUIZ_YEARS], [11]);
+  const c12 = questionPool(['phy', 'che', 'bio'], [...QUIZ_YEARS], [12]);
   assert.ok(c11.length > 150 && c12.length > 150);
   assert.equal(c11.length + c12.length, NEET_QUESTIONS.length);
   assert.ok(c11.every((q) => q.c === 11));

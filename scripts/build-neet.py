@@ -1,6 +1,7 @@
 """Builds the NEET question bank from the Reja1/jee-neet-benchmark dataset (MIT).
 
-Usage: python3 -I scripts/build-neet.py <path-to-neet-raw> <app-root> <tags.json>
+Usage: python3 -I scripts/build-neet.py <path-to-neet-raw> <app-root> <tags.json> [<extra-folder> ...]
+An extra folder holds metadata.jsonl in the same format plus the images it names (older papers cut from NTA booklets).
 Tags give each question its NCERT class (11/12) and chapter, read off the question images.
 Answers are the dataset's, corrected against NTA's keys (see OVERRIDES).
 """
@@ -21,7 +22,9 @@ OVERRIDES = {
 }
 SUBJECT = {'Physics': 'phy', 'Chemistry': 'che', 'Biology': 'bio', 'Botany': 'bio', 'Zoology': 'bio'}
 
-rows = [json.loads(l) for l in open(os.path.join(src, 'metadata-all.jsonl')) if l.strip()]
+rows = [dict(json.loads(l), _root=src) for l in open(os.path.join(src, 'metadata-all.jsonl')) if l.strip()]
+for extra in sys.argv[4:]:
+    rows += [dict(json.loads(l), _root=extra) for l in open(os.path.join(extra, 'metadata.jsonl')) if l.strip()]
 rows = [r for r in rows if r['exam_name'] == 'NEET' and r['question_type'] == 'MCQ_SINGLE_CORRECT']
 out_dir = os.path.join(root, 'assets', 'neet')
 os.makedirs(out_dir, exist_ok=True)
@@ -29,11 +32,14 @@ os.makedirs(out_dir, exist_ok=True)
 items = []
 for r in rows:
     qid = r['question_id']
-    im = Image.open(os.path.join(src, r['file_name'])).convert('L')
+    im = Image.open(os.path.join(r['_root'], r['file_name'])).convert('L')
+    if im.size[0] > 600:  # booklet scans are larger than the dataset images; match them
+        im = im.resize((600, round(im.size[1] * 600 / im.size[0])), Image.LANCZOS)
+    im = im.point(lambda v: 255 if v > 200 else v)  # clean scan noise so PNGs stay small
     w, h = im.size
     im.quantize(16).save(os.path.join(out_dir, f'{qid}.png'), optimize=True)
     ans = OVERRIDES.get(qid) or sorted(int(x) for x in json.loads(r['correct_answer']))
-    items.append({'id': qid, 'y': r['exam_year'], 'n': int(os.path.splitext(r['file_name'])[0].split('_')[-1]),
+    items.append({'id': qid, 'y': r['exam_year'], 'n': r.get('number') or int(os.path.splitext(r['file_name'])[0].split('_')[-1]),
                   's': SUBJECT[r['subject']], 'c': TAGS[qid]['c'], 'ch': TAGS[qid]['ch'], 'a': ans, 'w': w, 'h': h})
 
 items.sort(key=lambda x: (x['y'], x['n']))

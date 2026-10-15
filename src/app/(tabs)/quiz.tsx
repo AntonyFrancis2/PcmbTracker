@@ -84,7 +84,7 @@ export default function QuizTab() {
       <View style={{ gap: 4 }}>
         <T variant="title">NEET practice</T>
         <T color={c.muted}>
-          {NEET_QUESTIONS.length} real questions from NEET 2024, 2025 and 2026, timed like the exam. Marking: +4 correct, −1 wrong, 0 left blank.
+          {NEET_QUESTIONS.length} real questions from six NEET papers (2020–2026), timed like the exam. Marking: +4 correct, −1 wrong, 0 left blank.
         </T>
       </View>
 
@@ -231,7 +231,7 @@ export default function QuizTab() {
         </Card>
       )}
       <T variant="small" style={{ textAlign: 'center' }}>
-        Questions: {Object.values(YEAR_NOTE).join(' · ')}. Images via the Reja1/jee-neet-benchmark dataset.
+        Questions: {Object.values(YEAR_NOTE).join(' · ')}. 2024–2026 images via the Reja1/jee-neet-benchmark dataset; 2020–2023 cut from the question booklets. Answers from NTA's keys.
       </T>
     </ScrollView>
   );

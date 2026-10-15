@@ -12,9 +12,12 @@ export const QUIZ_SUBJECTS: { key: NeetSubject; name: string }[] = [
   { key: 'che', name: 'Chemistry' },
   { key: 'bio', name: 'Biology' },
 ];
-export const QUIZ_YEARS = [2024, 2025, 2026] as const;
+export const QUIZ_YEARS = [2020, 2021, 2023, 2024, 2025, 2026] as const;
 export const QUIZ_CLASSES = [11, 12] as const;
 export const YEAR_NOTE: Record<number, string> = {
+  2020: 'NEET 2020 (code E1)',
+  2021: 'NEET 2021 (code M1)',
+  2023: 'NEET 2023 (code E1)',
   2024: 'NEET 2024 (code T3)',
   2025: 'NEET 2025 (code 45)',
   2026: 'NEET 2026, 3 May paper (code 13, later cancelled)',
