@@ -1,0 +1,18 @@
+{
+ "log": {
+  "c360-2023-E1.pdf": 2741547,
+  "c360-2021-M1N1O1P1-en.pdf": 3732722,
+  "c360-2019-P1.pdf": 5860755,
+  "c360-2019-final-key.pdf": 121879
+ },
+ "found": {
+  "2022-S1": [
+   "ERROR HTTP Error 403: Forbidden"
+  ],
+  "2022-Q1": [
+   "ERROR HTTP Error 403: Forbidden"
+  ],
+  "2020-key": [],
+  "2020-qp": []
+ }
+}
